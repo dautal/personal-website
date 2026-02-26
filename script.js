@@ -5,6 +5,13 @@ function setText(id, value) {
   }
 }
 
+function setHtml(id, value) {
+  const node = document.getElementById(id);
+  if (node && typeof value === "string") {
+    node.innerHTML = value;
+  }
+}
+
 function clearNode(node) {
   if (node) {
     node.textContent = "";
@@ -45,7 +52,7 @@ function renderHome(content) {
   setText("home-hero-note", content.heroNote);
   setText("home-value-meta", content.valueMeta);
   setText("home-headline", content.headline);
-  setText("home-intro", content.intro);
+  setHtml("home-intro", content.intro);
   setText("home-proof-meta", content.proofMeta);
   setText("home-proof-heading", content.proofHeading);
 
