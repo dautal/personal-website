@@ -12,7 +12,6 @@
   --accent-soft: #d7ece8;
   --danger: #9f2d2d;
   --shadow: 0 14px 28px rgba(23, 34, 38, 0.12);
-  --header-offset: 112px;
 }
 
 * {
@@ -30,7 +29,6 @@ body {
   color: var(--text);
   font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
   line-height: 1.58;
-  padding-top: var(--header-offset);
   background:
     radial-gradient(circle at 10% 8%, rgba(15, 118, 110, 0.09), transparent 22%),
     radial-gradient(circle at 92% 18%, rgba(18, 78, 120, 0.11), transparent 26%),
@@ -50,10 +48,8 @@ a {
   background: rgba(255, 253, 248, 0.84);
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 20px rgba(23, 34, 38, 0.07);
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
   z-index: 20;
 }
 
@@ -447,10 +443,6 @@ main,
 }
 
 @media (max-width: 620px) {
-  :root {
-    --header-offset: 170px;
-  }
-
   .site-header {
     top: 0;
     margin-top: 0;
