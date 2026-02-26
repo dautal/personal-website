@@ -57,19 +57,18 @@ a {
 
 .logo,
 .brand {
-  width: 68px;
-  height: 68px;
-  border-radius: 999px;
-  border: 2px solid rgba(255, 253, 248, 0.9);
-  background-image: url("photos/avatar.jpg");
-  background-size: cover;
-  background-position: center 30%;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  border: 1px solid rgba(243, 112, 33, 0.45);
+  background: linear-gradient(150deg, #fff3ea 0%, #ffe2cf 100%);
   display: grid;
   place-items: center;
   text-decoration: none;
-  color: transparent;
-  text-indent: -9999px;
-  overflow: hidden;
+  color: #a54610;
+  font-size: 1.04rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
   margin: 0 auto 0.9rem;
   box-shadow: 0 8px 18px rgba(23, 34, 38, 0.22);
 }
@@ -108,6 +107,18 @@ a {
 
 .site-header.compact {
   width: min(920px, 92vw);
+}
+
+.site-header.compact .brand {
+  margin: 0 auto 0.9rem;
+}
+
+.about-me-layout {
+  display: block;
+}
+
+.about-me-photo {
+  display: none;
 }
 
 .site-header.compact .main-nav {
@@ -508,5 +519,53 @@ main,
 
   .hero-image {
     min-height: 13rem;
+  }
+}
+
+@media (min-width: 961px) {
+  .site-header:not(.compact) .logo {
+    display: none;
+  }
+
+  .about-me-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    grid-template-areas: "photo text";
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .about-me-layout > div {
+    grid-area: text;
+  }
+
+  .about-me-photo {
+    grid-area: photo;
+    display: block;
+    width: 250px;
+    height: 250px;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    background-image: url("photos/avatar.jpg");
+    background-size: cover;
+    background-position: center 28%;
+    box-shadow: 0 10px 18px rgba(23, 34, 38, 0.2);
+    margin: 0 auto;
+    align-self: center;
+    position: relative;
+  }
+
+  .about-me-photo-name {
+    position: absolute;
+    left: 50%;
+    bottom: -2rem;
+    transform: translateX(-50%);
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #45575c;
+    white-space: nowrap;
   }
 }
