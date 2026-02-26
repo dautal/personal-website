@@ -117,24 +117,6 @@ function renderHome(content) {
 function renderAbout(content) {
   setText("about-title", content.title);
   setText("about-intro", content.intro);
-
-  const skillsNode = document.getElementById("about-skills");
-  clearNode(skillsNode);
-  if (skillsNode) {
-    content.skills.forEach((skill) => {
-      const article = document.createElement("article");
-      article.className = "item";
-
-      const title = document.createElement("h3");
-      title.textContent = skill.title;
-
-      const text = document.createElement("p");
-      text.textContent = skill.text;
-
-      article.append(title, text);
-      skillsNode.appendChild(article);
-    });
-  }
 }
 
 function renderProfessional(content) {
@@ -156,6 +138,24 @@ function renderProfessional(content) {
 
       item.append(meta, role, renderCompactList(entry.bullets));
       experienceNode.appendChild(item);
+    });
+  }
+
+  const skillsNode = document.getElementById("professional-skills-list");
+  clearNode(skillsNode);
+  if (skillsNode && content.skills) {
+    content.skills.forEach((skill) => {
+      const article = document.createElement("article");
+      article.className = "item";
+
+      const title = document.createElement("h3");
+      title.textContent = skill.title;
+
+      const text = document.createElement("p");
+      text.textContent = skill.text;
+
+      article.append(title, text);
+      skillsNode.appendChild(article);
     });
   }
 

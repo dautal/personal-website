@@ -94,24 +94,6 @@ window.SITE_CONTENT = {
     title: "Clarity First",
     intro:
       "I am a Computer Engineering graduate from Boston University focused on practical systems work in Python, SQL, cloud tooling (AWS/Azure), and analytics platforms. I prioritize clear communication, measurable outcomes, and fast execution.",
-    skills: [
-      {
-        title: "Programming",
-        text: "Python, C/C++, SQL, Java, JavaScript",
-      },
-      {
-        title: "Cloud & Data",
-        text: "AWS, Azure, Databricks, REST APIs, CI/CD",
-      },
-      {
-        title: "Tools",
-        text: "Git, Advanced Excel, Power BI, GenAI",
-      },
-      {
-        title: "ERP",
-        text: "SAP, 1C",
-      },
-    ],
   },
   professional: {
     title: "Professional Profile",
@@ -133,6 +115,24 @@ window.SITE_CONTENT = {
             text: "Improved workflow and analysis efficiency by 20% through automation support.",
           },
         ],
+      },
+    ],
+    skills: [
+      {
+        title: "Programming",
+        text: "Python, C/C++, SQL, Java, JavaScript",
+      },
+      {
+        title: "Cloud & Data",
+        text: "AWS, Azure, Databricks, REST APIs, CI/CD",
+      },
+      {
+        title: "Tools",
+        text: "Git, Advanced Excel, Power BI, GenAI",
+      },
+      {
+        title: "ERP",
+        text: "SAP, 1C",
       },
     ],
     education: [
