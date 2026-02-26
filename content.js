@@ -2,7 +2,7 @@ window.SITE_CONTENT = {
   home: {
     heroNote: "Available for data analysis, finance/tax, and engineering roles.",
     valueMeta: "Value Proposition",
-    headline: "I Build Systems That Turn Complex Data Into Clear Decisions",
+    headline: "Curious and adaptable engineer with a background in technology and finance, focused on continuous growth and meaningful impact",
     intro:
       "Computer Engineering graduate with hands-on Python, SQL, AWS/Azure, and consulting delivery experience. I ship practical systems that reduce manual work and improve reporting quality.",
     ctas: [
@@ -64,31 +64,6 @@ window.SITE_CONTENT = {
         linkLabel: "Open photography page",
       },
     ],
-    contact: {
-      meta: "Contact",
-      heading: "Let's Talk About What You Need Built",
-      text: "Open to full-time, high-ownership roles in data and automation engineering.",
-      links: [
-        {
-          label: "alan.dautov@gmail.com",
-          href: "mailto:alan.dautov@gmail.com",
-        },
-        {
-          label: "+1 (857) 869-6993",
-          href: "tel:+18578696993",
-        },
-        {
-          label: "LinkedIn",
-          href: "https://www.linkedin.com/in/alandautov/",
-          newTab: true,
-        },
-        {
-          label: "Resume",
-          href: "/AlanDautov_Resume.pdf",
-          newTab: true,
-        },
-      ],
-    },
   },
   about: {
     title: "Clarity First",
@@ -197,6 +172,40 @@ window.SITE_CONTENT = {
             text: "Delivered recommendations on cost, scalability, performance, and CI/CD readiness.",
           },
         ],
+      },
+    ],
+  },
+  contactPage: {
+    meta: "Contact",
+    title: "Let's Connect",
+    intro:
+      "Reach me via email, phone, professional platforms, or resume. I usually respond within one business day.",
+    methods: [
+      {
+        title: "Email",
+        value: "alan.dautov@gmail.com",
+        actionLabel: "Send email",
+        href: "mailto:alan.dautov@gmail.com",
+      },
+      {
+        title: "Phone",
+        value: "+1 (857) 869-6993",
+        actionLabel: "Call now",
+        href: "tel:+18578696993",
+      },
+      {
+        title: "LinkedIn",
+        value: "linkedin.com/in/alandautov",
+        actionLabel: "Open profile",
+        href: "https://www.linkedin.com/in/alandautov/",
+        newTab: true,
+      },
+      {
+        title: "Resume",
+        value: "Latest CV and experience summary",
+        actionLabel: "Open resume",
+        href: "/AlanDautov_Resume.pdf",
+        newTab: true,
       },
     ],
   },

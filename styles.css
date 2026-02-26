@@ -251,6 +251,10 @@ main,
   grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
 }
 
+#projects-list {
+  grid-template-columns: 1fr;
+}
+
 .item,
 .card,
 .hobby-card {
@@ -411,6 +415,23 @@ main,
   margin: 0 auto 1.5rem;
   color: #3f4d51;
   font-size: 0.89rem;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.7rem;
+}
+
+.footer-nav a {
+  text-decoration: none;
+  border: 1px solid rgba(23, 34, 38, 0.14);
+  border-radius: 9px;
+  padding: 0.35rem 0.55rem;
+  background: rgba(255, 255, 255, 0.66);
+  font-size: 0.82rem;
+  font-weight: 700;
 }
 
 @keyframes fadeUp {

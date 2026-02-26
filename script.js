@@ -48,9 +48,6 @@ function renderHome(content) {
   setText("home-intro", content.intro);
   setText("home-proof-meta", content.proofMeta);
   setText("home-proof-heading", content.proofHeading);
-  setText("home-contact-meta", content.contact.meta);
-  setText("home-contact-heading", content.contact.heading);
-  setText("home-contact-text", content.contact.text);
 
   const ctaNode = document.getElementById("home-cta");
   clearNode(ctaNode);
@@ -105,13 +102,6 @@ function renderHome(content) {
     });
   }
 
-  const contactNode = document.getElementById("home-contact-links");
-  clearNode(contactNode);
-  if (contactNode) {
-    content.contact.links.forEach((link) => {
-      contactNode.appendChild(makeLink(link));
-    });
-  }
 }
 
 function renderAbout(content) {
@@ -241,6 +231,38 @@ function renderProjects(content) {
   }
 }
 
+function renderContact(content) {
+  setText("contact-meta", content.meta);
+  setText("contact-title", content.title);
+  setText("contact-intro", content.intro);
+
+  const methodsNode = document.getElementById("contact-methods");
+  clearNode(methodsNode);
+  if (methodsNode) {
+    content.methods.forEach((method) => {
+      const article = document.createElement("article");
+      article.className = "item";
+
+      const title = document.createElement("h3");
+      title.textContent = method.title;
+
+      const value = document.createElement("p");
+      value.textContent = method.value;
+
+      const link = makeLink(
+        {
+          href: method.href,
+          label: method.actionLabel,
+          newTab: Boolean(method.newTab),
+        },
+      );
+
+      article.append(title, value, link);
+      methodsNode.appendChild(article);
+    });
+  }
+}
+
 function renderPageContent() {
   const content = window.SITE_CONTENT;
   const page = document.body.dataset.page;
@@ -262,6 +284,10 @@ function renderPageContent() {
 
   if (page === "projects" && content.projects) {
     renderProjects(content.projects);
+  }
+
+  if (page === "contact" && content.contactPage) {
+    renderContact(content.contactPage);
   }
 }
 
