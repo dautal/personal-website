@@ -6,70 +6,94 @@
     <title>Alan Dautov | Personal Website</title>
     <meta
       name="description"
-      content="Minimal personal website of Alan Dautov: about, professional profile, projects, and photography."
+      content="Alan Dautov is a Computer Engineering graduate building data, automation, and cloud systems that deliver measurable business results."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body data-page="home">
     <header class="site-header">
       <a class="logo" href="index.html" aria-label="Home">AD</a>
       <nav class="main-nav" aria-label="Main navigation">
-        <a href="projects.html">projects.</a>
-        <a href="about.html">about.</a>
-        <a href="professional.html">professional.</a>
-        <a href="photography.html">photography.</a>
-        <a class="is-active" href="#contact">contact.</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="professional.html">Professional</a>
+        <a href="photography.html">Photography</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <main>
-      <p class="hero-note">Data, automation, cloud systems, and visual storytelling.</p>
-      <a class="scroll-cue" href="#home-sections" aria-label="Scroll">˅</a>
+      <p id="home-hero-note" class="hero-note">Available for data, automation, and cloud engineering roles.</p>
       <section class="hero-image" aria-hidden="true"></section>
 
       <section id="home-sections" class="section">
-        <h1>Alan Dautov</h1>
-        <p class="page-intro">
-          Computer Engineering graduate from Boston University with experience across Python, SQL,
-          cloud tooling (AWS/Azure), data workflows, and client-facing consulting. This website is
-          structured around four pages: about, professional profile, projects, and photography.
+        <p id="home-value-meta" class="meta">Value Proposition</p>
+        <h1 id="home-headline">I Build Systems That Turn Complex Data Into Clear Decisions</h1>
+        <p id="home-intro" class="page-intro">
+          Computer Engineering graduate with hands-on Python, SQL, AWS/Azure, and consulting
+          delivery experience. I ship practical systems that reduce manual work and improve
+          reporting quality.
         </p>
+
+        <div id="home-cta" class="hero-cta">
+          <a class="primary" href="AlanDautov_Resume.pdf" target="_blank" rel="noreferrer">View Resume</a>
+          <a href="https://www.linkedin.com/in/alandautov/" target="_blank" rel="noreferrer"
+            >LinkedIn Profile</a
+          >
+        </div>
+
+        <div id="home-stats" class="stat-grid" aria-label="Career highlights">
+          <div class="stat">
+            <strong>20%</strong>
+            <span>workflow and analysis efficiency gains in consulting delivery</span>
+          </div>
+          <div class="stat">
+            <strong>10+</strong>
+            <span>corporate clients supported across tax and data-heavy reporting tasks</span>
+          </div>
+          <div class="stat">
+            <strong>95%</strong>
+            <span>sensor-driven detection accuracy delivered in hardware capstone</span>
+          </div>
+        </div>
       </section>
 
       <section class="section">
-        <h2>Explore</h2>
-        <div class="list-grid two">
+        <p id="home-proof-meta" class="meta">What You Can Review Fast</p>
+        <h2 id="home-proof-heading">Focused Proof, Not Generic Claims</h2>
+        <div id="home-previews" class="list-grid two">
           <article class="item">
             <p class="meta">Background</p>
             <h3>About</h3>
-            <p>Who I am, how I work, and what I am focused on next.</p>
+            <p>Technical stack, work style, and execution approach in one quick page.</p>
             <a href="about.html">Open about page</a>
           </article>
           <article class="item">
             <p class="meta">Career</p>
             <h3>Professional</h3>
-            <p>Experience, education, honors, and community leadership in one place.</p>
+            <p>Experience, education, awards, and leadership highlights in bullet format.</p>
             <a href="professional.html">Open professional page</a>
           </article>
           <article class="item">
             <p class="meta">Work</p>
             <h3>Projects</h3>
-            <p>Selected engineering and product projects with concise context and outcomes.</p>
+            <p>Selected builds with scope, ownership, and measurable outcomes.</p>
             <a href="projects.html">Open projects page</a>
           </article>
           <article class="item">
             <p class="meta">Visual</p>
             <h3>Photography</h3>
-            <p>A monochrome gallery space for hobby photography and urban scenes.</p>
+            <p>A compact gallery that shows creative discipline and visual taste.</p>
             <a href="photography.html">Open photography page</a>
           </article>
         </div>
       </section>
 
       <section id="contact" class="section">
-        <h2>Contact</h2>
-        <p>If you are hiring or want to collaborate, I am available for conversation.</p>
-        <div class="contact-line">
+        <p id="home-contact-meta" class="meta">Contact</p>
+        <h2 id="home-contact-heading">Let’s Talk About What You Need Built</h2>
+        <p id="home-contact-text">Open to full-time, high-ownership roles in data and automation engineering.</p>
+        <div id="home-contact-links" class="contact-line">
           <a href="mailto:alan.dautov@gmail.com">alan.dautov@gmail.com</a>
           <a href="tel:+18578696993">+1 (857) 869-6993</a>
           <a href="https://www.linkedin.com/in/alandautov/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -82,6 +106,7 @@
       <p>&copy; <span id="year"></span> Alan Dautov.</p>
     </footer>
 
+    <script src="content.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

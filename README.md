@@ -7,4 +7,7 @@ Static personal website with:
 - Blog page
 - Hobbies page
 
+## Editing Content Quickly
 
+Update text content in `content.js`.
+The main pages (`index`, `about`, `professional`, `projects`) render their copy from that file.
