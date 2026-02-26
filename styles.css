@@ -113,45 +113,11 @@ a {
   margin: 0 auto 0.9rem;
 }
 
-design/fixes
-.site-header:not(.compact) .logo {
-  display: none;
-}
-
-.about-me-layout {
-  display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  grid-template-areas: "photo text";
-  gap: 0.85rem;
-  align-items: center;
-}
-
-.about-me-photo {
-  grid-area: photo;
-  display: block;
-  width: 120px;
-  height: 120px;
-  border-radius: 999px;
-  border: 2px solid rgba(255, 255, 255, 0.95);
-  background-image: url("photos/avatar.jpg");
-  background-size: cover;
-  background-position: center 28%;
-  box-shadow: 0 10px 18px rgba(23, 34, 38, 0.2);
-  margin: 0 auto;
-  position: relative;
-}
-
-.about-me-layout > div {
-  grid-area: text;
-}
-
-.about-me-photo-name {
 .about-me-layout {
   display: block;
 }
 
 .about-me-photo {
-main
   display: none;
 }
 
@@ -557,9 +523,6 @@ main,
 }
 
 @media (min-width: 961px) {
-design/fixes
-  .about-me-layout {
-    grid-template-columns: 280px minmax(0, 1fr);
   .site-header:not(.compact) .logo {
     display: none;
   }
@@ -568,7 +531,6 @@ design/fixes
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
     grid-template-areas: "photo text";
-main
     gap: 1rem;
     align-items: center;
   }
@@ -578,15 +540,6 @@ main
   }
 
   .about-me-photo {
-design/fixes
-    width: 250px;
-    height: 250px;
-    align-self: center;
-  }
-
-  .about-me-photo-name {
-    display: block;
-
     grid-area: photo;
     display: block;
     width: 250px;
@@ -603,7 +556,6 @@ design/fixes
   }
 
   .about-me-photo-name {
-main
     position: absolute;
     left: 50%;
     bottom: -2rem;
