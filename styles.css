@@ -460,6 +460,71 @@ main,
 }
 
 @media (max-width: 960px) {
+  .about-me-layout {
+    display: grid;
+    grid-template-columns: 108px minmax(0, 1fr);
+    grid-template-areas:
+      "photo title"
+      "intro intro";
+    gap: 0.9rem;
+    align-items: center;
+  }
+
+  .about-me-layout > div {
+    display: contents;
+  }
+
+  .about-me-layout > div > h1 {
+    grid-area: title;
+    margin: 0;
+    font-size: clamp(1.28rem, 5vw, 1.6rem);
+    line-height: 1.12;
+    align-self: center;
+  }
+
+  .about-me-layout > div > .page-intro {
+    grid-area: intro;
+    margin-top: 0.75rem;
+  }
+
+  .about-me-photo {
+    grid-area: photo;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 108px;
+    height: 96px;
+    margin: 0;
+    align-self: center;
+    position: relative;
+  }
+
+  .about-me-photo::before {
+    content: "";
+    width: 96px;
+    height: 96px;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    background-image: url("photos/avatar.jpg");
+    background-size: cover;
+    background-position: center 28%;
+    box-shadow: 0 8px 16px rgba(23, 34, 38, 0.2);
+  }
+
+  .about-me-photo-name {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0.35rem 0 0;
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #172226;
+    white-space: nowrap;
+  }
+
   .main-nav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -563,9 +628,8 @@ main,
     margin: 0;
     font-size: 0.85rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: #45575c;
+    letter-spacing: 0.01em;
+    color: #172226;
     white-space: nowrap;
   }
 }
