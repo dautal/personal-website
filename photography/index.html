@@ -4,32 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Photography | Alan Dautov</title>
-    <meta name="description" content="Photography hobby gallery by Alan Dautov." />
+    <meta name="description" content="Photography section with selected frames and visual notes." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="logo" href="/" aria-label="Home">AD</a>
+    <div class="bg-shape bg-shape-1" aria-hidden="true"></div>
+    <header class="site-header compact">
+      <a class="brand" href="/">AD</a>
       <nav class="main-nav" aria-label="Main navigation">
-        <a href="/projects/">Projects</a>
-        <a href="/bio/">Bio</a>
-        <a href="/professional/">Professional</a>
+        <a href="/">Home</a>
+        <a href="/hobby/">Hobbies</a>
         <a class="is-active" href="/photography/">Photography</a>
-        <a href="/contact/">Contact</a>
+        <a href="/blog/">Blog</a>
       </nav>
     </header>
 
-    <main>
-      <section class="section">
-        <p class="meta">Hobby</p>
+    <main class="hobby-main">
+      <section class="panel reveal">
+        <p class="eyebrow">Photography</p>
         <h1>Photography</h1>
-        <p class="page-intro">
-          gallery.
-        </p>
+        <p>A focused visual section for selected frames, composition, and storytelling.</p>
       </section>
 
-      <section class="section">
-        <p class="page-intro">Photo gallery coming soon.</p>
+      <section class="grid hobby-grid reveal">
+        <article class="card hobby-card">
+          <h2>Street</h2>
+          <p>Urban details, timing, and contrast-driven frames.</p>
+        </article>
+        <article class="card hobby-card">
+          <h2>Landscape</h2>
+          <p>Wide scenes with emphasis on light, depth, and atmosphere.</p>
+        </article>
+        <article class="card hobby-card">
+          <h2>Archive</h2>
+          <p>Curated shots across travel, city life, and daily moments.</p>
+        </article>
       </section>
     </main>
 
@@ -39,12 +54,12 @@
         <a href="/bio/">Bio</a>
         <a href="/professional/">Professional</a>
         <a href="/projects/">Projects</a>
-        <a href="/photography/">Photography</a>
+        <a href="/personal/">Personal</a>
         <a href="/blog/">Blog</a>
         <a href="/hobby/">Hobbies</a>
         <a href="/contact/">Contact</a>
       </nav>
-      <p>&copy; <span id="year"></span> Alan Dautov.</p>
+      <p>&copy; <span id="year"></span> Alan Dautov. All rights reserved.</p>
     </footer>
 
     <script src="/script.js"></script>
