@@ -10,4 +10,4 @@ Static personal website with:
 ## Editing Content Quickly
 
 Update text content in `content.js`.
-The main pages (`index`, `about`, `professional`, `projects`) render their copy from that file.
+The main pages (`index`, `bio`, `professional`, `projects`) render their copy from that file.

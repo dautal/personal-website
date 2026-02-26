@@ -1,10 +1,10 @@
 window.SITE_CONTENT = {
   home: {
     heroNote: "Available for data analysis, finance/tax, and engineering roles.",
-    valueMeta: "Value Proposition",
-    headline: "Curious and adaptable engineer with a background in technology and finance, focused on continuous growth and meaningful impact",
+    valueMeta: "About Me",
+    headline: "Focused on continuous growth and meaningful impact",
     intro:
-      "Computer Engineering graduate with hands-on Python, SQL, AWS/Azure, and consulting delivery experience. I ship practical systems that reduce manual work and improve reporting quality.",
+      "Former KPMG Corporate Tax consultant and Boston University Computer Engineering graduate, a well-rounded engineer who adapts quickly across technologies and business domains. With experience in finance, software, data, cloud, and enterprise systems, I focus on building practical solutions that connect technology with real-world needs.",
     ctas: [
       {
         label: "View Resume",
@@ -37,10 +37,10 @@ window.SITE_CONTENT = {
     previews: [
       {
         meta: "Background",
-        title: "About",
+        title: "Bio",
         text: "Technical stack, work style, and execution approach in one quick page.",
-        href: "/about/",
-        linkLabel: "Open about page",
+        href: "/bio/",
+        linkLabel: "Open bio page",
       },
       {
         meta: "Career",
@@ -65,7 +65,7 @@ window.SITE_CONTENT = {
       },
     ],
   },
-  about: {
+  bio: {
     title: "Clarity First",
     intro:
       "I am a Computer Engineering graduate from Boston University focused on practical systems work in Python, SQL, cloud tooling (AWS/Azure), and analytics platforms. I prioritize clear communication, measurable outcomes, and fast execution.",

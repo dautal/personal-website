@@ -104,9 +104,9 @@ function renderHome(content) {
 
 }
 
-function renderAbout(content) {
-  setText("about-title", content.title);
-  setText("about-intro", content.intro);
+function renderBio(content) {
+  setText("bio-title", content.title);
+  setText("bio-intro", content.intro);
 }
 
 function renderProfessional(content) {
@@ -274,8 +274,8 @@ function renderPageContent() {
     renderHome(content.home);
   }
 
-  if (page === "about" && content.about) {
-    renderAbout(content.about);
+  if (page === "bio" && content.bio) {
+    renderBio(content.bio);
   }
 
   if (page === "professional" && content.professional) {
