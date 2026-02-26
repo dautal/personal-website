@@ -444,6 +444,7 @@ main,
 
 @media (max-width: 620px) {
   .site-header {
+    position: static;
     top: 0.4rem;
     margin-top: 0.5rem;
     padding: 0.7rem;
