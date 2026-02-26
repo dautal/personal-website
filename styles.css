@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap");
 
 :root {
-  --bg: #f8f3e9;
-  --bg-soft: #efe6d8;
-  --surface: #fffdf8;
+  --bg: #fff7f1;
+  --bg-soft: #fdf1e7;
+  --surface: #ffffff;
   --text: #172226;
   --muted: #5f6c70;
-  --line: #d8ccbc;
-  --accent: #0f766e;
-  --accent-2: #124e78;
-  --accent-soft: #d7ece8;
+  --line: #ead7c8;
+  --accent: #f37021;
+  --accent-2: #cc5a13;
+  --accent-soft: #ffe1cf;
   --danger: #9f2d2d;
   --shadow: 0 14px 28px rgba(23, 34, 38, 0.12);
 }
@@ -30,8 +30,8 @@ body {
   font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
   line-height: 1.58;
   background:
-    radial-gradient(circle at 10% 8%, rgba(15, 118, 110, 0.09), transparent 22%),
-    radial-gradient(circle at 92% 18%, rgba(18, 78, 120, 0.11), transparent 26%),
+    radial-gradient(circle at 10% 8%, rgba(243, 112, 33, 0.1), transparent 24%),
+    radial-gradient(circle at 92% 18%, rgba(204, 90, 19, 0.08), transparent 28%),
     linear-gradient(170deg, var(--bg) 0%, var(--bg-soft) 100%);
 }
 
@@ -96,14 +96,14 @@ a {
 
 .main-nav a:hover {
   transform: translateY(-1px);
-  border-color: rgba(15, 118, 110, 0.45);
+  border-color: rgba(243, 112, 33, 0.65);
   color: var(--accent);
 }
 
 .main-nav a.is-active {
   background: var(--accent-soft);
-  color: #0d4a45;
-  border-color: rgba(15, 118, 110, 0.5);
+  color: #a54610;
+  border-color: rgba(243, 112, 33, 0.55);
 }
 
 .site-header.compact {
@@ -312,7 +312,7 @@ main,
 
 .contact-line a:hover,
 .hero-cta a:hover {
-  border-color: rgba(15, 118, 110, 0.5);
+  border-color: rgba(243, 112, 33, 0.7);
   color: var(--accent);
 }
 
@@ -324,14 +324,16 @@ main,
 }
 
 .hero-cta .primary {
-  background: linear-gradient(135deg, #0f766e 0%, #124e78 100%);
-  border-color: transparent;
+  background: var(--accent);
+  border-color: var(--accent);
   color: #f8fbfb;
 }
 
 .hero-cta .primary:hover {
   color: #ffffff;
-  box-shadow: 0 10px 16px rgba(15, 118, 110, 0.3);
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  box-shadow: 0 10px 16px rgba(243, 112, 33, 0.35);
 }
 
 .stat-grid {
