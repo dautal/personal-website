@@ -483,6 +483,12 @@ main,
     gap: 0.42rem;
   }
 
+  .main-nav a:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(360px, 100%);
+  }
+
   main,
   .blog-main,
   .hobby-main,
