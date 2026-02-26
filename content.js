@@ -1,7 +1,7 @@
 window.SITE_CONTENT = {
   home: {
     heroNote: "Available for data analysis, finance/tax, and engineering roles.",
-    valueMeta: " Me",
+    valueMeta: "About",
     headline: "Focused on continuous growth and meaningful impact",
     intro:
       "<strong>Former KPMG Corporate Tax consultant and Boston University Computer Engineering graduate.</strong><br /><br />A well-rounded engineer who adapts quickly across technologies and business domains. With experience in finance, software, data, cloud, and enterprise systems, I focus on building practical solutions that connect technology with real-world needs.",
