@@ -62,7 +62,7 @@ a {
   border-radius: 14px;
   border: 1px solid rgba(243, 112, 33, 0.45);
   background: linear-gradient(150deg, #fff3ea 0%, #ffe2cf 100%);
-  display: grid;
+  display: none;
   place-items: center;
   text-decoration: none;
   color: #a54610;
@@ -76,7 +76,7 @@ a {
 .main-nav {
   display: grid;
   gap: 0.55rem;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
 .main-nav a {
