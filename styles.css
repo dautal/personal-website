@@ -48,7 +48,10 @@ a {
   background: rgba(255, 253, 248, 0.84);
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 20px rgba(23, 34, 38, 0.07);
-  position: static;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
   z-index: 20;
 }
 
