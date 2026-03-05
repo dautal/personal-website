@@ -1,3 +1,4 @@
+// Helper: set plain text content by element id.
 function setText(id, value) {
   const node = document.getElementById(id);
   if (node && typeof value === "string") {
@@ -5,6 +6,7 @@ function setText(id, value) {
   }
 }
 
+// Helper: set HTML content by element id (used when content includes tags like <strong>).
 function setHtml(id, value) {
   const node = document.getElementById(id);
   if (node && typeof value === "string") {
@@ -12,12 +14,14 @@ function setHtml(id, value) {
   }
 }
 
+// Helper: clear an element before rebuilding dynamic content.
 function clearNode(node) {
   if (node) {
     node.textContent = "";
   }
 }
 
+// Helper: create a link element from a content config object.
 function makeLink(link, className) {
   const a = document.createElement("a");
   a.href = link.href;
@@ -32,6 +36,7 @@ function makeLink(link, className) {
   return a;
 }
 
+// Builds bullet lists used in Professional and Projects cards.
 function renderCompactList(points) {
   const ul = document.createElement("ul");
   ul.className = "compact-list";
@@ -48,6 +53,7 @@ function renderCompactList(points) {
   return ul;
 }
 
+// Renders Home page dynamic sections (hero text, CTAs, stats, preview cards).
 function renderHome(content) {
   setText("home-hero-note", content.heroNote);
   setText("home-value-meta", content.valueMeta);
@@ -56,6 +62,7 @@ function renderHome(content) {
   setText("home-proof-meta", content.proofMeta);
   setText("home-proof-heading", content.proofHeading);
 
+  // Replace CTA buttons from content config.
   const ctaNode = document.getElementById("home-cta");
   clearNode(ctaNode);
   if (ctaNode) {
@@ -64,6 +71,7 @@ function renderHome(content) {
     });
   }
 
+  // Rebuild stat cards.
   const statsNode = document.getElementById("home-stats");
   clearNode(statsNode);
   if (statsNode) {
@@ -82,6 +90,7 @@ function renderHome(content) {
     });
   }
 
+  // Rebuild preview cards if the section exists on the page.
   const previewsNode = document.getElementById("home-previews");
   clearNode(previewsNode);
   if (previewsNode) {
@@ -111,11 +120,13 @@ function renderHome(content) {
 
 }
 
+// Renders Bio page text fields.
 function renderBio(content) {
   setText("bio-title", content.title);
   setText("bio-intro", content.intro);
 }
 
+// Renders Professional page sections: experience, skills, education, honors, community.
 function renderProfessional(content) {
   setText("professional-title", content.title);
 
@@ -148,10 +159,21 @@ function renderProfessional(content) {
       const title = document.createElement("h3");
       title.textContent = skill.title;
 
-      const text = document.createElement("p");
-      text.textContent = skill.text;
+      const list = document.createElement("ul");
+      list.className = "compact-list";
+      const skillItems = Array.isArray(skill.items)
+        ? skill.items
+        : String(skill.text || "")
+            .split(",")
+            .map((part) => part.trim())
+            .filter(Boolean);
+      skillItems.forEach((entry) => {
+        const li = document.createElement("li");
+        li.textContent = entry;
+        list.appendChild(li);
+      });
 
-      article.append(title, text);
+      article.append(title, list);
       skillsNode.appendChild(article);
     });
   }
@@ -215,6 +237,7 @@ function renderProfessional(content) {
   }
 }
 
+// Renders Projects list cards.
 function renderProjects(content) {
   setText("projects-title", content.title);
 
@@ -238,6 +261,7 @@ function renderProjects(content) {
   }
 }
 
+// Renders Contact page title/intro and contact method cards.
 function renderContact(content) {
   setText("contact-meta", content.meta);
   setText("contact-title", content.title);
@@ -270,6 +294,7 @@ function renderContact(content) {
   }
 }
 
+// Routes rendering based on <body data-page="..."> and loaded window.SITE_CONTENT.
 function renderPageContent() {
   const content = window.SITE_CONTENT;
   const page = document.body.dataset.page;
@@ -298,6 +323,7 @@ function renderPageContent() {
   }
 }
 
+// Footer year is always current year.
 const yearNode = document.getElementById("year");
 if (yearNode) {
   yearNode.textContent = String(new Date().getFullYear());
