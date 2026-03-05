@@ -1,15 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap");
 
 :root {
-  --bg: #fff7f1;
-  --bg-soft: #fdf1e7;
+  --bg: #f3f8ff;
+  --bg-soft: #eaf3ff;
   --surface: #ffffff;
   --text: #172226;
   --muted: #5f6c70;
   --line: #ead7c8;
-  --accent: #f37021;
-  --accent-2: #cc5a13;
-  --accent-soft: #ffe1cf;
+  --accent: #0a66c2;
+  --accent-2: #0088cc;
+  --accent-soft: #dbeafe;
+  --accent-grad: linear-gradient(135deg, #0a66c2 0%, #1d9bf0 55%, #0088cc 100%);
   --danger: #9f2d2d;
   --shadow: 0 14px 28px rgba(23, 34, 38, 0.12);
 }
@@ -30,8 +31,8 @@ body {
   font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
   line-height: 1.58;
   background:
-    radial-gradient(circle at 10% 8%, rgba(243, 112, 33, 0.1), transparent 24%),
-    radial-gradient(circle at 92% 18%, rgba(204, 90, 19, 0.08), transparent 28%),
+    radial-gradient(circle at 10% 8%, rgba(10, 102, 194, 0.12), transparent 24%),
+    radial-gradient(circle at 92% 18%, rgba(0, 136, 204, 0.1), transparent 28%),
     linear-gradient(170deg, var(--bg) 0%, var(--bg-soft) 100%);
 }
 
@@ -60,12 +61,12 @@ a {
   width: 56px;
   height: 56px;
   border-radius: 14px;
-  border: 1px solid rgba(243, 112, 33, 0.45);
-  background: linear-gradient(150deg, #fff3ea 0%, #ffe2cf 100%);
+  border: 1px solid rgba(10, 102, 194, 0.45);
+  background: linear-gradient(150deg, #e9f3ff 0%, #dff2ff 100%);
   display: none;
   place-items: center;
   text-decoration: none;
-  color: #a54610;
+  color: #0a66c2;
   font-size: 1.04rem;
   font-weight: 800;
   letter-spacing: 0.03em;
@@ -95,14 +96,15 @@ a {
 
 .main-nav a:hover {
   transform: translateY(-1px);
-  border-color: rgba(243, 112, 33, 0.65);
+  border-color: rgba(10, 102, 194, 0.55);
+  background: rgba(224, 238, 255, 0.7);
   color: var(--accent);
 }
 
 .main-nav a.is-active {
-  background: var(--accent-soft);
-  color: #a54610;
-  border-color: rgba(243, 112, 33, 0.55);
+  background: linear-gradient(145deg, #e8f3ff 0%, #d9ecff 100%);
+  color: #084b93;
+  border-color: rgba(10, 102, 194, 0.45);
 }
 
 .site-header.compact {
@@ -173,6 +175,10 @@ main,
   background-position: center;
   position: relative;
   overflow: hidden;
+}
+
+body[data-page="bio"] .hero-image {
+  margin-top: 1rem;
 }
 
 .hero-image::before,
@@ -303,6 +309,10 @@ main,
   color: #223035;
 }
 
+#professional-community-list .item + .item {
+  margin-top: 0.7rem;
+}
+
 .contact-line {
   display: flex;
   gap: 0.6rem;
@@ -319,12 +329,21 @@ main,
   background: rgba(255, 255, 255, 0.78);
   font-weight: 700;
   font-size: 0.93rem;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease;
 }
 
 .contact-line a:hover,
 .hero-cta a:hover {
-  border-color: rgba(243, 112, 33, 0.7);
+  transform: translateY(-1px);
+  border-color: rgba(10, 102, 194, 0.7);
+  background: rgba(233, 243, 255, 0.85);
   color: var(--accent);
+  box-shadow: 0 8px 14px rgba(10, 102, 194, 0.16);
 }
 
 .hero-cta {
@@ -335,16 +354,16 @@ main,
 }
 
 .hero-cta .primary {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--accent-grad);
+  border-color: rgba(10, 102, 194, 0.6);
   color: #f8fbfb;
 }
 
 .hero-cta .primary:hover {
   color: #ffffff;
-  background: var(--accent-2);
-  border-color: var(--accent-2);
-  box-shadow: 0 10px 16px rgba(243, 112, 33, 0.35);
+  background: linear-gradient(135deg, #084b93 0%, #0a66c2 52%, #0096de 100%);
+  border-color: #0a66c2;
+  box-shadow: 0 10px 16px rgba(10, 102, 194, 0.36);
 }
 
 .stat-grid {
@@ -355,9 +374,9 @@ main,
 }
 
 .stat {
-  border: 1px solid rgba(15, 118, 110, 0.26);
+  border: 1px solid rgba(10, 102, 194, 0.3);
   border-radius: 12px;
-  background: rgba(215, 236, 232, 0.62);
+  background: linear-gradient(160deg, rgba(233, 243, 255, 0.92) 0%, rgba(214, 236, 255, 0.86) 100%);
   padding: 0.74rem;
 }
 
@@ -367,7 +386,7 @@ main,
   font-size: 1.35rem;
   line-height: 1;
   margin-bottom: 0.22rem;
-  color: #0f4d47;
+  color: #0a4f99;
 }
 
 .photo-grid {

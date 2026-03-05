@@ -8,17 +8,17 @@
       name="description"
       content="Professional experience, education, honors, and community leadership of Alan Dautov."
     />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=20260305" />
   </head>
   <body data-page="professional">
     <header class="site-header">
       <a class="logo" href="/" aria-label="Home">AD</a>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="/">Home</a>
-        <a href="/bio/">Bio</a>
         <a class="is-active" href="/professional/">Professional</a>
         <a href="/projects/">Projects</a>
         <a href="/contact/">Contact</a>
+        <a href="/bio/">Bio</a>
         <a href="/personal/">Personal</a>
       </nav>
     </header>
@@ -46,19 +46,39 @@
         <div id="professional-skills-list" class="list-grid two">
           <article class="item">
             <h3>Programming</h3>
-            <p>Python, C/C++, SQL, Java, JavaScript</p>
+            <ul class="compact-list">
+              <li>Python</li>
+              <li>C/C++</li>
+              <li>SQL</li>
+              <li>Java</li>
+              <li>JavaScript</li>
+            </ul>
           </article>
           <article class="item">
             <h3>Cloud & Data</h3>
-            <p>AWS, Azure, Databricks, REST APIs, CI/CD</p>
+            <ul class="compact-list">
+              <li>AWS</li>
+              <li>Azure</li>
+              <li>Databricks</li>
+              <li>REST APIs</li>
+              <li>CI/CD</li>
+            </ul>
           </article>
           <article class="item">
             <h3>Tools</h3>
-            <p>Git, Advanced Excel, Power BI, GenAI</p>
+            <ul class="compact-list">
+              <li>Git</li>
+              <li>Advanced Excel</li>
+              <li>Power BI</li>
+              <li>GenAI</li>
+            </ul>
           </article>
           <article class="item">
             <h3>ERP</h3>
-            <p>SAP, 1C</p>
+            <ul class="compact-list">
+              <li>SAP</li>
+              <li>1C</li>
+            </ul>
           </article>
         </div>
       </section>
@@ -95,6 +115,10 @@
           <h3>President, BU Russian Speaking Society</h3>
           <p>Scaled membership from 70 to 500+ and led partnerships, events, and fundraising.</p>
         </div>
+          <div class="item">
+          <h3>Russian Cluster Leader, BU Global House</h3>
+          <p>Led weekly cultural discussions, organized Russian and Post-Soviet events with partner language clusters, and delivered weekly progress reports to faculty.</p>
+        </div>
         </div>
       </section>
     </main>
@@ -113,7 +137,7 @@
       <p>&copy; <span id="year"></span> Alan Dautov.</p>
     </footer>
 
-    <script src="/content.js"></script>
+    <script src="/content/professional.js?v=20260305b"></script>
     <script src="/script.js"></script>
   </body>
 </html>
