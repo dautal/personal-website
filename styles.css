@@ -347,7 +347,7 @@ body[data-page="bio"] .hero-image {
 }
 
 .hero-cta {
-  margin-top: 0.95rem;
+  margin-top: 0.45rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
@@ -484,7 +484,8 @@ body[data-page="bio"] .hero-image {
     grid-template-columns: 108px minmax(0, 1fr);
     grid-template-areas:
       "photo title"
-      "intro intro";
+      "intro intro"
+      "cta cta";
     gap: 0.9rem;
     align-items: center;
   }
@@ -504,6 +505,11 @@ body[data-page="bio"] .hero-image {
   .about-me-layout > div > .page-intro {
     grid-area: intro;
     margin-top: 0.75rem;
+  }
+
+  .about-me-layout #home-cta {
+    grid-area: cta;
+    margin-top: 0.25rem;
   }
 
   .about-me-photo {
@@ -614,9 +620,11 @@ body[data-page="bio"] .hero-image {
   .about-me-layout {
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
-    grid-template-areas: "photo text";
+    grid-template-areas:
+      "photo text"
+      "cta text";
     gap: 1rem;
-    align-items: center;
+    align-items: start;
   }
 
   .about-me-layout > div {
@@ -635,8 +643,14 @@ body[data-page="bio"] .hero-image {
     background-position: center 28%;
     box-shadow: 0 10px 18px rgba(23, 34, 38, 0.2);
     margin: 0 auto;
-    align-self: center;
+    align-self: start;
     position: relative;
+  }
+
+  .about-me-layout #home-cta {
+    grid-area: cta;
+    margin-top: 1.8rem;
+    justify-content: center;
   }
 
   .about-me-photo-name {
