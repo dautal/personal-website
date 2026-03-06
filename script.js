@@ -83,7 +83,19 @@ function renderHome(content) {
       value.textContent = stat.value;
 
       const text = document.createElement("span");
-      text.textContent = stat.text;
+      const fullText = String(stat.text || "");
+      const highlight = String(stat.highlight || "");
+      if (highlight && fullText.includes(highlight)) {
+        const [before, ...rest] = fullText.split(highlight);
+        const after = rest.join(highlight);
+        text.append(before);
+        const strongPart = document.createElement("strong");
+        strongPart.textContent = highlight;
+        text.appendChild(strongPart);
+        text.append(after);
+      } else {
+        text.textContent = fullText;
+      }
 
       wrapper.append(value, text);
       statsNode.appendChild(wrapper);

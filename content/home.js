@@ -21,15 +21,18 @@ window.SITE_CONTENT = {
     stats: [
       {
         value: "20%",
-        text: "workflow and analysis efficiency gains in consulting delivery",
+        text: "workflow and analysis efficiency gains in consulting delivery at KPMG",
+        highlight: "KPMG",
       },
       {
         value: "10+",
-        text: "corporate clients supported across tax and data-heavy reporting tasks",
+        text: "corporate clients supported across tax and data-heavy reporting tasks at KPMG",
+        highlight: "KPMG",
       },
       {
         value: "95%",
-        text: "sensor-driven detection accuracy delivered in hardware capstone",
+        text: "sensor-driven detection accuracy delivered in hardware Senior Design Project",
+        highlight: "Senior Design Project",
       },
     ],
   },
