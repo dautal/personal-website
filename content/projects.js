@@ -3,6 +3,7 @@ window.SITE_CONTENT = {
     title: "Selected Work",
     items: [
       {
+        slug: "dnevnik-todo-calendar",
         meta: "2026 | Product Design, Full-Stack Planning System",
         detailMeta: "Jul 2025 - Present",
         title: "Dnevnik Todo Calendar",
@@ -31,6 +32,7 @@ window.SITE_CONTENT = {
         ],
       },
       {
+        slug: "halo-smart-safety-device",
         meta: "2023 | Embedded Systems, Hardware Prototyping, Mobile Integration",
         detailMeta: "Sep 2022 - May 2023",
         title: "Halo Smart Safety Device",
@@ -59,6 +61,7 @@ window.SITE_CONTENT = {
         ],
       },
       {
+        slug: "mlops-practicum-databricks",
         meta: "2022 | Cloud MLOps, Platform Evaluation, CI/CD",
         detailMeta: "Sep 2022 - Jan 2023",
         title: "MLOps Practicum - Databricks",
@@ -88,6 +91,7 @@ window.SITE_CONTENT = {
       },
     ],
     miscellaneous: {
+      slug: "miscellaneous-projects",
       meta: "2019-present | Hardware, Software, ML, Finance, Business, Data Analysis",
       title: "Miscellaneous Projects",
       subtitle: "Smaller tools, experiments, and side projects that I can add here over time.",
