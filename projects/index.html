@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects | Alan Dautov</title>
     <meta name="description" content="Selected projects by Alan Dautov." />
-    <link rel="stylesheet" href="/styles.css?v=20260305" />
+    <link rel="stylesheet" href="/styles.css?v=20260329" />
   </head>
   <body data-page="projects">
     <header class="site-header">
@@ -25,25 +25,153 @@
         <p class="meta">Projects</p>
         <h1 id="projects-title">Selected Work</h1>
         <div id="projects-list" class="list-grid two">
-          <article class="item">
-            <p class="meta">Sep 2022 - May 2023</p>
-            <h3>Halo Smart Safety Device</h3>
-            <ul class="compact-list">
-              <li><strong>Scope:</strong> Built a portable anti-drink-spiking safety device.</li>
-              <li><strong>Execution:</strong> Led sensor calibration, Arduino logic, BLE integration, and prototype build.</li>
-              <li><strong>Result:</strong> Reached 95% detection accuracy with smartphone alerting.</li>
-            </ul>
-          </article>
+          <details class="item project-details">
+            <summary>
+              <p class="meta">2026 | Product Design, Full-Stack Planning System</p>
+              <h3>Dnevnik Todo Calendar</h3>
+              <p class="project-subtitle">
+                A weekly planner that turns paper-journal discipline into a calm digital product.
+              </p>
+              <p class="project-expand-cue">
+                <span class="project-cue-open">View details</span>
+                <span class="project-cue-close">Close details</span>
+              </p>
+            </summary>
+            <div class="project-details-body">
+              <p class="project-detail-meta">Jul 2025 - Present</p>
+              <ul class="compact-list">
+                <li>
+                  <strong>Product:</strong> Designed a two-page weekly spread that borrows the
+                  structure and discipline of a Soviet and post-Soviet paper dnevnik rather than the
+                  endless-feed feel of a typical to-do app.
+                </li>
+                <li>
+                  <strong>UX:</strong> Built around ritual and rhythm: rich notes, current-day
+                  highlighting, drag-and-drop planning, a misc inbox, and theme variations that keep
+                  the planner calm but still modern.
+                </li>
+                <li>
+                  <strong>Platform:</strong> Under the surface, it combines React, TypeScript, Vite,
+                  Supabase sync with localStorage fallback, Google-first beta access control,
+                  localization, and expandable calendar views.
+                </li>
+              </ul>
+              <p class="project-stack">
+                <strong>Stack:</strong> React, TypeScript, Vite, Supabase, localStorage fallback,
+                Vercel
+              </p>
+              <div class="hero-cta">
+                <a class="primary" href="/projects/dnevnik-todo-calendar/">Learn more</a>
+              </div>
+            </div>
+          </details>
 
-          <article class="item">
-            <p class="meta">Sep 2022 - Jan 2023</p>
-            <h3>MLOps Practicum - Databricks</h3>
-            <ul class="compact-list">
-              <li><strong>Scope:</strong> Evaluated Databricks for MLOps in a Fortune 500 cloud environment.</li>
-              <li><strong>Execution:</strong> Partnered with engineering team across AWS/Azure use cases and sprint reporting.</li>
-              <li><strong>Result:</strong> Delivered recommendations on cost, scalability, performance, and CI/CD readiness.</li>
-            </ul>
-          </article>
+          <details class="item project-details">
+            <summary>
+              <p class="meta">2023 | Embedded Systems, Hardware Prototyping, Mobile Integration</p>
+              <h3>Halo Smart Safety Device</h3>
+              <p class="project-subtitle">
+                A portable safety device combining physical sensing, Bluetooth alerts, and
+                product-led hardware design.
+              </p>
+              <p class="project-expand-cue">
+                <span class="project-cue-open">View details</span>
+                <span class="project-cue-close">Close details</span>
+              </p>
+            </summary>
+            <div class="project-details-body">
+              <p class="project-detail-meta">Sep 2022 - May 2023</p>
+              <ul class="compact-list">
+                <li>
+                  <strong>Leadership:</strong> Designed Halo and led a five-person team through the
+                  second half of the academic year, coordinating work in Trello and maintaining
+                  biweekly technical progress logs.
+                </li>
+                <li>
+                  <strong>System:</strong> Built a portable smart device that used calibrated
+                  accelerometer and strain-gauge sensing with Bluetooth-connected smartphone alerts to
+                  detect drink tampering.
+                </li>
+                <li>
+                  <strong>Execution:</strong> Implemented Arduino logic, integrated BLE communication,
+                  contributed to iOS app development, and carried out hardware testing, soldering,
+                  prototype construction, and sensor calibration.
+                </li>
+              </ul>
+              <p class="project-stack">
+                <strong>Stack:</strong> Arduino Nano 33 BLE, BLE, strain gauge, accelerometer,
+                gyroscope, iOS app, 3D-printed hardware
+              </p>
+              <div class="hero-cta">
+                <a class="primary" href="/projects/halo-smart-safety-device/">Learn more</a>
+              </div>
+            </div>
+          </details>
+
+          <details class="item project-details">
+            <summary>
+              <p class="meta">2022 | Cloud MLOps, Platform Evaluation, CI/CD</p>
+              <h3>MLOps Practicum - Databricks</h3>
+              <p class="project-subtitle">
+                An MLOps practicum that tested Databricks across AWS, Azure, GitHub Actions, and
+                Azure DevOps.
+              </p>
+              <p class="project-expand-cue">
+                <span class="project-cue-open">View details</span>
+                <span class="project-cue-close">Close details</span>
+              </p>
+            </summary>
+              <div class="project-details-body">
+                <p class="project-detail-meta">Sep 2022 - Jan 2023</p>
+                <ul class="compact-list">
+                  <li>
+                    <strong>Collaboration:</strong> Worked with a Fortune 500 financial services cloud
+                    engineering team to evaluate Databricks as a possible MLOps platform across AWS and
+                    Azure.
+                  </li>
+                  <li>
+                    <strong>Execution:</strong> Explored Databricks through hands-on fraud detection
+                    pipelines and learned the end-to-end MLOps lifecycle using Azure and CI/CD
+                    workflows.
+                  </li>
+                  <li>
+                    <strong>Reporting:</strong> Delivered biweekly sprint reports and presentations
+                    covering platform scalability, cost efficiency, performance, and usability.
+                  </li>
+                </ul>
+                <p class="project-stack">
+                  <strong>Stack:</strong> Databricks, AWS, Azure, GitHub Actions, Azure DevOps, MLflow,
+                  Python
+                </p>
+                <div class="hero-cta">
+                  <a class="primary" href="/projects/mlops-practicum-databricks/">Learn more</a>
+                </div>
+              </div>
+          </details>
+        </div>
+
+        <div id="projects-misc" class="list-grid" style="margin-top: 0.9rem">
+          <details class="item project-details">
+            <summary>
+              <p class="meta">2019-present | Hardware, Software, ML, Finance, Business, Data Analysis</p>
+              <h3>Miscellaneous Projects</h3>
+              <p class="project-subtitle">
+                Smaller tools, experiments, and side projects that I can add here over time.
+              </p>
+              <p class="project-expand-cue">
+                <span class="project-cue-open">View details</span>
+                <span class="project-cue-close">Close details</span>
+              </p>
+            </summary>
+            <div class="project-details-body">
+              <ul class="compact-list">
+                <li>Smaller tools, experiments, and utilities to add here later.</li>
+                <li>Short automation or scripting projects.</li>
+                <li>Data, scraping, and workflow side projects.</li>
+                <li>Quick frontend or product experiments.</li>
+              </ul>
+            </div>
+          </details>
         </div>
       </section>
     </main>
@@ -62,7 +190,7 @@
       <p>&copy; <span id="year"></span> Alan Dautov.</p>
     </footer>
 
-    <script src="/content/projects.js?v=20260305"></script>
-    <script src="/script.js"></script>
+    <script src="/content/projects.js?v=20260329g"></script>
+    <script src="/script.js?v=20260329k"></script>
   </body>
 </html>

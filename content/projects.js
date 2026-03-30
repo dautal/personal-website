@@ -3,41 +3,100 @@ window.SITE_CONTENT = {
     title: "Selected Work",
     items: [
       {
-        meta: "Sep 2022 - May 2023",
-        title: "Halo Smart Safety Device",
+        meta: "2026 | Product Design, Full-Stack Planning System",
+        detailMeta: "Jul 2025 - Present",
+        title: "Dnevnik Todo Calendar",
+        subtitle: "A weekly planner that turns paper-journal discipline into a calm digital product.",
         bullets: [
           {
-            label: "Scope",
-            text: "Built a portable anti-drink-spiking safety device.",
+            label: "Product",
+            text: "Designed a two-page weekly spread that borrows the structure and discipline of a Soviet and post-Soviet paper dnevnik rather than the endless-feed feel of a typical to-do app.",
           },
           {
-            label: "Execution",
-            text: "Led sensor calibration, Arduino logic, BLE integration, and prototype build.",
+            label: "UX",
+            text: "Built around ritual and rhythm: rich notes, current-day highlighting, drag-and-drop planning, a misc inbox, and theme variations that keep the planner calm but still modern.",
           },
           {
-            label: "Result",
-            text: "Reached 95% detection accuracy with smartphone alerting.",
+            label: "Platform",
+            text: "Under the surface, it combines React, TypeScript, Vite, Supabase sync with localStorage fallback, Google-first beta access control, localization, and expandable calendar views.",
+          },
+        ],
+        stack: "React, TypeScript, Vite, Supabase, localStorage fallback, Vercel",
+        links: [
+          {
+            label: "Learn More",
+            href: "/projects/dnevnik-todo-calendar/",
+            primary: true,
           },
         ],
       },
       {
-        meta: "Sep 2022 - Jan 2023",
-        title: "MLOps Practicum - Databricks",
+        meta: "2023 | Embedded Systems, Hardware Prototyping, Mobile Integration",
+        detailMeta: "Sep 2022 - May 2023",
+        title: "Halo Smart Safety Device",
+        subtitle: "A portable safety device combining physical sensing, Bluetooth alerts, and product-led hardware design.",
         bullets: [
           {
-            label: "Scope",
-            text: "Evaluated Databricks for MLOps in a Fortune 500 cloud environment.",
+            label: "Leadership",
+            text: "Designed Halo and led a five-person team through the second half of the academic year, coordinating work in Trello and maintaining biweekly technical progress logs.",
+          },
+          {
+            label: "System",
+            text: "Built a portable smart device that used calibrated accelerometer and strain-gauge sensing with Bluetooth-connected smartphone alerts to detect drink tampering.",
           },
           {
             label: "Execution",
-            text: "Partnered with engineering team across AWS/Azure use cases and sprint reporting.",
+            text: "Implemented Arduino logic, integrated BLE communication, contributed to iOS app development, and carried out hardware testing, soldering, prototype construction, and sensor calibration.",
+          },
+        ],
+        stack: "Arduino Nano 33 BLE, BLE, strain gauge, accelerometer, gyroscope, iOS app, 3D-printed hardware",
+        links: [
+          {
+            label: "Learn More",
+            href: "/projects/halo-smart-safety-device/",
+            primary: true,
+          },
+        ],
+      },
+      {
+        meta: "2022 | Cloud MLOps, Platform Evaluation, CI/CD",
+        detailMeta: "Sep 2022 - Jan 2023",
+        title: "MLOps Practicum - Databricks",
+        subtitle: "An MLOps practicum that tested Databricks across AWS, Azure, GitHub Actions, and Azure DevOps.",
+        bullets: [
+          {
+            label: "Collaboration",
+            text: "Worked with a Fortune 500 financial services cloud engineering team to evaluate Databricks as a possible MLOps platform across AWS and Azure.",
           },
           {
-            label: "Result",
-            text: "Delivered recommendations on cost, scalability, performance, and CI/CD readiness.",
+            label: "Execution",
+            text: "Explored Databricks through hands-on fraud detection pipelines and learned the end-to-end MLOps lifecycle using Azure and CI/CD workflows.",
+          },
+          {
+            label: "Reporting",
+            text: "Delivered biweekly sprint reports and presentations covering platform scalability, cost efficiency, performance, and usability.",
+          },
+        ],
+        stack: "Databricks, AWS, Azure, GitHub Actions, Azure DevOps, MLflow, Python",
+        links: [
+          {
+            label: "Learn More",
+            href: "/projects/mlops-practicum-databricks/",
+            primary: true,
           },
         ],
       },
     ],
+    miscellaneous: {
+      meta: "2019-present | Hardware, Software, ML, Finance, Business, Data Analysis",
+      title: "Miscellaneous Projects",
+      subtitle: "Smaller tools, experiments, and side projects that I can add here over time.",
+      bullets: [
+        "Smaller tools, experiments, and utilities to add here later.",
+        "Short automation or scripting projects.",
+        "Data, scraping, and workflow side projects.",
+        "Quick frontend or product experiments.",
+      ],
+    },
   },
 };
