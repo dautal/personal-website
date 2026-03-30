@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dnevnik Todo Calendar | Alan Dautov</title>
+    <meta
+      name="description"
+      content="Case study for Dnevnik Todo Calendar, a notebook-inspired weekly planner by Alan Dautov."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/styles.css?v=20260329" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="/" aria-label="Home">AD</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/professional/">Professional</a>
+        <a class="is-active" href="/projects/">Projects</a>
+        <a href="/contact/">Contact</a>
+        <a href="/bio/">Bio</a>
+        <a href="/personal/">Personal</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section">
+        <p class="meta">Project Case Study</p>
+        <h1>Dnevnik Todo Calendar</h1>
+        <p class="project-subtitle">
+          A weekly planner that treats digital planning like a paper ritual instead of a task feed.
+        </p>
+        <p>
+          Dnevnik Todo Calendar is a React, TypeScript, and Vite web app inspired by the structure
+          of a Soviet and post-Soviet paper dnevnik. The interface is intentionally built like a
+          two-page weekly spread: Monday through Wednesday on the left, Thursday through Saturday
+          on the right. The goal is not to mimic paper for nostalgia alone, but to preserve the
+          sense of order, rhythm, and restraint that makes notebook planning feel dependable.
+        </p>
+        <p>
+          The product combines that analog structure with modern utility. Users can drag tasks
+          across days, expand rows within limits, open rich notes popups, search across tasks and
+          notes, switch themes, and move between weekly and zoomed-out calendar views. Under the
+          surface, it supports Supabase persistence with localStorage fallback, authentication,
+          localization, and beta access control, so the planner feels thoughtful at both the UX and
+          systems level.
+        </p>
+      </section>
+
+      <section class="section">
+        <p class="meta">Highlights</p>
+        <ul class="compact-list">
+          <li>
+            <strong>Planner structure:</strong> A square, notebook-inspired weekly spread with six
+            default rows per day, current-day emphasis, and a layout designed to stay visually
+            disciplined.
+          </li>
+          <li>
+            <strong>Task workflow:</strong> Rich notes per task, app-styled priority popups, drag
+            and drop across days, a miscellaneous inbox for unsorted tasks, and multiple ways to
+            close the notes editor without breaking flow.
+          </li>
+          <li>
+            <strong>Broader planning view:</strong> Month and year zoom-out modes with GitHub-style
+            activity shading so planning history becomes visible instead of buried.
+          </li>
+          <li>
+            <strong>Product depth:</strong> English and Russian localization, multiple visual
+            themes, separate auth flow, Google auth setup, invite-only beta access, and Vercel
+            deployment for testing.
+          </li>
+        </ul>
+        <p class="project-stack">
+          <strong>Stack:</strong> React, TypeScript, Vite, Supabase, localStorage fallback, Vercel
+        </p>
+      </section>
+
+      <section class="section">
+        <p class="meta">Why I Built It</p>
+        <p>
+          I wanted to explore whether analog planning habits could be translated into software
+          without losing their emotional logic. Most digital planners optimize for speed, density,
+          and infinite flexibility. This project moves in a different direction: fewer choices at
+          once, stronger weekly rhythm, and an interface that feels structured enough to support
+          discipline instead of fragmenting attention.
+        </p>
+        <p>
+          That tension between nostalgia and modern product design is what makes the project
+          interesting to me. It is intentionally quiet, but not simplistic. The planner tries to
+          feel like a tool people return to because it supports a habit, not because it overwhelms
+          them with features.
+        </p>
+      </section>
+
+      <section class="section">
+        <p class="meta">Future Direction</p>
+        <p>
+          Today, Dnevnik Todo Calendar is a focused weekly planner. The longer-term opportunity is
+          to expand it carefully into collaborative planning: shared boards across multiple users,
+          worker or team assignments, deadlines, reminders, configurable email notifications for
+          assignments and status changes, and richer workload or productivity statistics.
+        </p>
+        <p>
+          The direction is not to imitate heavyweight enterprise software, but to grow toward a
+          calmer and more human-centered work-management layer. There is a credible path from a
+          personal planner to a lightweight structured system for collaborative execution, while
+          keeping the product visual, disciplined, and emotionally legible.
+        </p>
+      </section>
+
+      <section class="section">
+        <p class="meta">Visual Placeholders</p>
+        <div class="list-grid two">
+          <article class="item">
+            <h3>Weekly Spread Screenshot</h3>
+            <p class="project-note">
+              Placeholder for the main planner view showing the left-page and right-page weekly
+              layout, current-day highlighting, and notebook-inspired grid structure.
+            </p>
+          </article>
+          <article class="item">
+            <h3>Notes + Priority Flow</h3>
+            <p class="project-note">
+              Placeholder for a close-up of the rich notes popup, formatting controls, and custom
+              priority dialog styling.
+            </p>
+          </article>
+          <article class="item">
+            <h3>Month / Year View</h3>
+            <p class="project-note">
+              Placeholder for the zoomed-out calendar with GitHub-style activity shading and a
+              clearer overview of planning patterns over time.
+            </p>
+          </article>
+          <article class="item">
+            <h3>Auth + Settings</h3>
+            <p class="project-note">
+              Placeholder for the separate auth screen, invite-only access flow, and the account
+              menu with theme and language controls.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="hero-cta">
+          <a class="primary" href="/projects/">Back to Projects</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/bio/">Bio</a>
+        <a href="/professional/">Professional</a>
+        <a href="/projects/">Projects</a>
+        <a href="/personal/">Personal</a>
+        <a href="/blog/">Blog</a>
+        <a href="/hobby/">Hobbies</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <p>&copy; <span id="year"></span> Alan Dautov.</p>
+    </footer>
+
+    <script src="/script.js?v=20260329"></script>
+  </body>
+</html>

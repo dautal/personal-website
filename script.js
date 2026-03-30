@@ -257,19 +257,165 @@ function renderProjects(content) {
   clearNode(listNode);
   if (listNode) {
     content.items.forEach((project) => {
-      const article = document.createElement("article");
-      article.className = "item";
+      const hasExpandableContent =
+        project.description ||
+        project.bullets?.length ||
+        project.stack ||
+        project.why ||
+        project.future ||
+        project.links?.length;
 
-      const meta = document.createElement("p");
-      meta.className = "meta";
-      meta.textContent = project.meta;
+      if (hasExpandableContent) {
+        const details = document.createElement("details");
+        details.className = "item project-details";
 
-      const title = document.createElement("h3");
-      title.textContent = project.title;
+        const summary = document.createElement("summary");
+        const meta = document.createElement("p");
+        meta.className = "meta";
+        meta.textContent = project.meta;
 
-      article.append(meta, title, renderCompactList(project.bullets));
-      listNode.appendChild(article);
+        const title = document.createElement("h3");
+        title.textContent = project.title;
+
+        summary.append(meta, title);
+
+        if (project.subtitle) {
+          const subtitle = document.createElement("p");
+          subtitle.className = "project-subtitle";
+          subtitle.textContent = project.subtitle;
+          summary.appendChild(subtitle);
+        }
+
+        const cue = document.createElement("p");
+        cue.className = "project-expand-cue";
+
+        const openCue = document.createElement("span");
+        openCue.className = "project-cue-open";
+        openCue.textContent = "View details";
+
+        const closeCue = document.createElement("span");
+        closeCue.className = "project-cue-close";
+        closeCue.textContent = "Close details";
+
+        cue.append(openCue, closeCue);
+        summary.appendChild(cue);
+
+        details.appendChild(summary);
+
+        const detailsBody = document.createElement("div");
+        detailsBody.className = "project-details-body";
+
+        if (project.description) {
+          const description = document.createElement("p");
+          description.textContent = project.description;
+          detailsBody.appendChild(description);
+        }
+
+        if (project.detailMeta) {
+          const detailMeta = document.createElement("p");
+          detailMeta.className = "project-detail-meta";
+          detailMeta.textContent = project.detailMeta;
+          detailsBody.appendChild(detailMeta);
+        }
+
+        if (project.bullets?.length) {
+          detailsBody.appendChild(renderCompactList(project.bullets));
+        }
+
+        if (project.stack) {
+          const stack = document.createElement("p");
+          stack.className = "project-stack";
+          stack.innerHTML = `<strong>Stack:</strong> ${project.stack}`;
+          detailsBody.appendChild(stack);
+        }
+
+        if (project.why) {
+          const why = document.createElement("p");
+          why.className = "project-note";
+          why.innerHTML = `<strong>Why I built it:</strong> ${project.why}`;
+          detailsBody.appendChild(why);
+        }
+
+        if (project.future) {
+          const future = document.createElement("p");
+          future.className = "project-note";
+          future.innerHTML = `<strong>Future direction:</strong> ${project.future}`;
+          detailsBody.appendChild(future);
+        }
+
+        if (project.links?.length) {
+          const links = document.createElement("div");
+          links.className = "hero-cta";
+          project.links.forEach((link) => {
+            links.appendChild(makeLink(link, link.primary ? "primary" : ""));
+          });
+          detailsBody.appendChild(links);
+        }
+
+        details.appendChild(detailsBody);
+        listNode.appendChild(details);
+      } else if (project.subtitle) {
+        const article = document.createElement("article");
+        article.className = "item";
+
+        const meta = document.createElement("p");
+        meta.className = "meta";
+        meta.textContent = project.meta;
+
+        const title = document.createElement("h3");
+        title.textContent = project.title;
+
+        const subtitle = document.createElement("p");
+        subtitle.className = "project-subtitle";
+        subtitle.textContent = project.subtitle;
+        article.append(meta, title, subtitle);
+        listNode.appendChild(article);
+      }
     });
+  }
+
+  const miscNode = document.getElementById("projects-misc");
+  clearNode(miscNode);
+  if (miscNode && content.miscellaneous) {
+    const details = document.createElement("details");
+    details.className = "item project-details";
+
+    const summary = document.createElement("summary");
+
+    const meta = document.createElement("p");
+    meta.className = "meta";
+    meta.textContent = content.miscellaneous.meta || "Placeholder";
+
+    const title = document.createElement("h3");
+    title.textContent = content.miscellaneous.title;
+
+    const subtitle = document.createElement("p");
+    subtitle.className = "project-subtitle";
+    subtitle.textContent = content.miscellaneous.subtitle || "";
+
+    const cue = document.createElement("p");
+    cue.className = "project-expand-cue";
+    cue.innerHTML =
+      '<span class="project-cue-open">View details</span><span class="project-cue-close">Close details</span>';
+
+    summary.append(meta, title, subtitle, cue);
+
+    const body = document.createElement("div");
+    body.className = "project-details-body";
+
+    if (content.miscellaneous.bullets?.length) {
+      const list = document.createElement("ul");
+      list.className = "compact-list";
+      content.miscellaneous.bullets.forEach((entry) => {
+        const li = document.createElement("li");
+        li.textContent = entry;
+        list.appendChild(li);
+      });
+      body.appendChild(list);
+    }
+
+    details.append(summary, body);
+    miscNode.appendChild(details);
   }
 }
 

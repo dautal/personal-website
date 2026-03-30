@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halo Smart Safety Device | Alan Dautov</title>
+    <meta
+      name="description"
+      content="Case study for Halo Smart Safety Device, a portable anti-drink-spiking system by Alan Dautov."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/styles.css?v=20260329" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="/" aria-label="Home">AD</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/professional/">Professional</a>
+        <a class="is-active" href="/projects/">Projects</a>
+        <a href="/contact/">Contact</a>
+        <a href="/bio/">Bio</a>
+        <a href="/personal/">Personal</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section">
+        <p class="meta">Project Case Study</p>
+        <h1>Halo Smart Safety Device</h1>
+        <p class="project-subtitle">
+          A portable safety device that combined calibrated sensing, Bluetooth alerts, and structured team execution.
+        </p>
+        <p>
+          Halo was developed as a senior design project focused on drink-spiking prevention. The
+          core idea was to build a battery-powered protective cover that could fit common cup types,
+          detect suspicious cover removal, and notify the user through a connected phone before the
+          drink was left exposed.
+        </p>
+        <p>
+          What made the project meaningful was that it had to work as both a product and a sensing
+          system. The device used an Arduino Nano 33 BLE, a strain gauge, and onboard motion
+          sensing to distinguish real tampering from ordinary movement. That meant the design effort
+          was not only about building a prototype, but about making detection logic reliable enough
+          to reduce false positives while still keeping the device portable, lightweight, and easy
+          to place on a drink in real settings.
+        </p>
+        <p>
+          My role was central both technically and organizationally. I designed and led development
+          of the device, helped guide a five-person team through the second half of the academic
+          year, and coordinated work in Trello while documenting progress through biweekly logs. On
+          the engineering side, I implemented calibrated Arduino code, integrated BLE communication,
+          contributed to the iOS app, and carried out hardware testing, soldering, prototype
+          construction, and sensor calibration. The final system reached 95% detection accuracy
+          while maintaining a clear smartphone alert flow.
+        </p>
+      </section>
+
+      <section class="section">
+        <p class="meta">Highlights</p>
+        <ul class="compact-list">
+          <li>
+            <strong>Leadership:</strong> Led a five-person team, tracked execution in Trello,
+            prepared formal reports, and presented progress to faculty and the project advisor.
+          </li>
+          <li>
+            <strong>Detection system:</strong> Combined calibrated strain-gauge sensing with
+            accelerometer-based motion data to better separate actual tampering from normal cup
+            movement.
+          </li>
+          <li>
+            <strong>Connected experience:</strong> Implemented BLE communication and contributed to
+            the iOS app so the device could show live status and send smartphone alerts when cover
+            removal was detected.
+          </li>
+          <li>
+            <strong>Validation:</strong> Achieved 95% detection accuracy, giving the prototype more
+            credibility as a functional safety product instead of a purely conceptual demo.
+          </li>
+          <li>
+            <strong>Engineering tradeoffs:</strong> Worked through fragile strain gauges,
+            inconsistent amplifier behavior, physical assembly constraints, and the tension between
+            portability, reliability, and future manufacturability.
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <p class="meta">Why It Mattered</p>
+        <p>
+          Halo was compelling because it sat at the intersection of hardware reliability, user
+          trust, and team execution. A safety product like this cannot just be technically
+          interesting; it has to feel dependable, portable, and intuitive enough that someone would
+          actually carry it and use it. That made the project as much about disciplined product
+          thinking and communication as about sensing hardware.
+        </p>
+        <p>
+          Just as important, the project required formal engineering communication: technical
+          reports, organized GitHub repositories, faculty presentations, and a documented testing
+          process. That made it a strong example of leading a system from concept to prototype while
+          keeping the work structured enough for others to build on.
+        </p>
+      </section>
+
+      <section class="section">
+        <p class="meta">Visual Placeholders</p>
+        <div class="list-grid two">
+          <article class="item">
+            <h3>Prototype Hardware</h3>
+            <p class="project-note">
+              Placeholder for the final assembled Halo prototype mounted on the cup cover.
+            </p>
+          </article>
+          <article class="item">
+            <h3>Sensor + Alert Flow</h3>
+            <p class="project-note">
+              Placeholder for a system diagram showing strain gauge + IMU sensing, BLE transmission,
+              and iOS alert flow.
+            </p>
+          </article>
+          <article class="item">
+            <h3>App Status Screen</h3>
+            <p class="project-note">
+              Placeholder for the iOS interface showing connected device status, green/red cover
+              indicators, and notification behavior.
+            </p>
+          </article>
+          <article class="item">
+            <h3>Testing Evidence</h3>
+            <p class="project-note">
+              Placeholder for test-plan or testing-report visuals documenting prototype validation
+              and accuracy results.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="hero-cta">
+          <a class="primary" href="/projects/">Back to Projects</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/bio/">Bio</a>
+        <a href="/professional/">Professional</a>
+        <a href="/projects/">Projects</a>
+        <a href="/personal/">Personal</a>
+        <a href="/blog/">Blog</a>
+        <a href="/hobby/">Hobbies</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <p>&copy; <span id="year"></span> Alan Dautov.</p>
+    </footer>
+
+    <script src="/script.js?v=20260329"></script>
+  </body>
+</html>
