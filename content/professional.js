@@ -41,6 +41,11 @@ window.SITE_CONTENT = {
     ],
     education: [
       {
+        meta: "May 2026 - May 2028 | Boston, Massachusetts",
+        school: "Boston University",
+        degree: "Master of Science in Financial Management",
+      },
+      {
         meta: "Sep 2019 - May 2023 | Boston, Massachusetts",
         school: "Boston University",
         degree: "Bachelor of Science in Computer Engineering",

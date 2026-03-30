@@ -36,6 +36,58 @@ function makeLink(link, className) {
   return a;
 }
 
+// Adds hover-preview + click-to-pin behavior to project details cards.
+function enhanceProjectDetails(details) {
+  if (!(details instanceof HTMLDetailsElement)) {
+    return;
+  }
+
+  const summary = details.querySelector("summary");
+  if (!(summary instanceof HTMLElement)) {
+    return;
+  }
+
+  details.dataset.pinned = details.open ? "true" : "false";
+  details.dataset.preview = "false";
+
+  summary.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const pinned = details.dataset.pinned === "true";
+    const previewing = details.dataset.preview === "true";
+
+    if (previewing && !pinned) {
+      details.dataset.preview = "false";
+      details.dataset.pinned = "true";
+      details.open = true;
+      return;
+    }
+
+    const nextPinned = !pinned;
+    details.dataset.preview = "false";
+    details.dataset.pinned = String(nextPinned);
+    details.open = nextPinned;
+  });
+
+  details.addEventListener("mouseenter", () => {
+    if (details.dataset.pinned === "true") {
+      return;
+    }
+
+    details.dataset.preview = "true";
+    details.open = true;
+  });
+
+  details.addEventListener("mouseleave", () => {
+    if (details.dataset.pinned === "true") {
+      return;
+    }
+
+    details.dataset.preview = "false";
+    details.open = false;
+  });
+}
+
 // Builds bullet lists used in Professional and Projects cards.
 function renderCompactList(points) {
   const ul = document.createElement("ul");
@@ -83,21 +135,21 @@ function renderHome(content) {
       value.textContent = stat.value;
 
       const text = document.createElement("span");
-      const fullText = String(stat.text || "");
-      const highlight = String(stat.highlight || "");
-      if (highlight && fullText.includes(highlight)) {
-        const [before, ...rest] = fullText.split(highlight);
-        const after = rest.join(highlight);
-        text.append(before);
-        const strongPart = document.createElement("strong");
-        strongPart.textContent = highlight;
-        text.appendChild(strongPart);
-        text.append(after);
-      } else {
-        text.textContent = fullText;
-      }
+      text.textContent = String(stat.text || "");
 
       wrapper.append(value, text);
+
+      if (stat.actionLabel && stat.actionHref) {
+        const action = makeLink(
+          {
+            href: stat.actionHref,
+            label: stat.actionLabel,
+          },
+          "stat-action",
+        );
+        wrapper.appendChild(action);
+      }
+
       statsNode.appendChild(wrapper);
     });
   }
@@ -156,7 +208,10 @@ function renderProfessional(content) {
       const role = document.createElement("h3");
       role.textContent = entry.role;
 
-      item.append(meta, role, renderCompactList(entry.bullets));
+      const details = renderCompactList(entry.bullets);
+      details.classList.add("section-hidden-content");
+
+      item.append(meta, role, details);
       experienceNode.appendChild(item);
     });
   }
@@ -166,10 +221,17 @@ function renderProfessional(content) {
   if (skillsNode && content.skills) {
     content.skills.forEach((skill) => {
       const article = document.createElement("article");
-      article.className = "item";
+      article.className = "item skill-card";
+
+      const header = document.createElement("div");
+      header.className = "skill-card-header";
 
       const title = document.createElement("h3");
       title.textContent = skill.title;
+      header.append(title);
+
+      const body = document.createElement("div");
+      body.className = "skill-card-body";
 
       const list = document.createElement("ul");
       list.className = "compact-list";
@@ -185,7 +247,9 @@ function renderProfessional(content) {
         list.appendChild(li);
       });
 
-      article.append(title, list);
+      body.appendChild(list);
+      body.classList.add("section-hidden-content");
+      article.append(header, body);
       skillsNode.appendChild(article);
     });
   }
@@ -202,12 +266,9 @@ function renderProfessional(content) {
       meta.textContent = entry.meta;
 
       const school = document.createElement("h3");
-      school.textContent = entry.school;
+      school.textContent = `${entry.school}, ${entry.degree}`;
 
-      const degree = document.createElement("p");
-      degree.textContent = entry.degree;
-
-      item.append(meta, school, degree);
+      item.append(meta, school);
       educationNode.appendChild(item);
     });
   }
@@ -216,7 +277,7 @@ function renderProfessional(content) {
   clearNode(honorsNode);
   if (honorsNode) {
     content.honors.forEach((entry) => {
-      const article = document.createElement("article");
+      const article = document.createElement("div");
       article.className = "item";
 
       const title = document.createElement("h3");
@@ -224,6 +285,7 @@ function renderProfessional(content) {
 
       const text = document.createElement("p");
       text.textContent = entry.text;
+      text.classList.add("section-hidden-content");
 
       article.append(title, text);
       honorsNode.appendChild(article);
@@ -242,11 +304,67 @@ function renderProfessional(content) {
 
       const text = document.createElement("p");
       text.textContent = entry.text;
+      text.classList.add("section-hidden-content");
 
       item.append(role, text);
       communityNode.appendChild(item);
     });
   }
+
+  const expandableSections = Array.from(document.querySelectorAll("[data-expandable-section]"));
+  const setSectionExpanded = (section, expanded) => {
+    if (!(section instanceof HTMLElement)) {
+      return;
+    }
+
+    section.classList.toggle("is-expanded", expanded);
+    const toggle = section.querySelector(".section-toggle-row");
+    if (toggle instanceof HTMLElement) {
+      toggle.setAttribute("aria-expanded", String(expanded));
+    }
+  };
+
+  expandableSections.forEach((section, index) => {
+    const toggle = section.querySelector(".section-toggle-row");
+    if (!(toggle instanceof HTMLElement)) {
+      return;
+    }
+
+    if (index !== 0) {
+      return;
+    }
+
+    toggle.onclick = () => {
+      const nextExpanded = !section.classList.contains("is-expanded");
+      expandableSections.forEach((targetSection) => {
+        setSectionExpanded(targetSection, nextExpanded);
+      });
+    };
+
+    section.classList.add("section-master-toggle");
+    section.onclick = (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) {
+        return;
+      }
+
+      if (target.closest("a, button")) {
+        return;
+      }
+
+      const nextExpanded = !section.classList.contains("is-expanded");
+      expandableSections.forEach((targetSection) => {
+        setSectionExpanded(targetSection, nextExpanded);
+      });
+    };
+  });
+
+  if (window.location.hash === "#experience") {
+    expandableSections.forEach((section) => {
+      setSectionExpanded(section, true);
+    });
+  }
+
 }
 
 // Renders Projects list cards.
@@ -268,6 +386,9 @@ function renderProjects(content) {
       if (hasExpandableContent) {
         const details = document.createElement("details");
         details.className = "item project-details";
+        if (project.slug) {
+          details.id = project.slug;
+        }
 
         const summary = document.createElement("summary");
         const meta = document.createElement("p");
@@ -293,11 +414,15 @@ function renderProjects(content) {
         openCue.className = "project-cue-open";
         openCue.textContent = "View details";
 
+        const previewCue = document.createElement("span");
+        previewCue.className = "project-cue-preview";
+        previewCue.textContent = "Click to keep open";
+
         const closeCue = document.createElement("span");
         closeCue.className = "project-cue-close";
         closeCue.textContent = "Close details";
 
-        cue.append(openCue, closeCue);
+        cue.append(openCue, previewCue, closeCue);
         summary.appendChild(cue);
 
         details.appendChild(summary);
@@ -353,6 +478,7 @@ function renderProjects(content) {
         }
 
         details.appendChild(detailsBody);
+        enhanceProjectDetails(details);
         listNode.appendChild(details);
       } else if (project.subtitle) {
         const article = document.createElement("article");
@@ -379,6 +505,9 @@ function renderProjects(content) {
   if (miscNode && content.miscellaneous) {
     const details = document.createElement("details");
     details.className = "item project-details";
+    if (content.miscellaneous.slug) {
+      details.id = content.miscellaneous.slug;
+    }
 
     const summary = document.createElement("summary");
 
@@ -396,7 +525,7 @@ function renderProjects(content) {
     const cue = document.createElement("p");
     cue.className = "project-expand-cue";
     cue.innerHTML =
-      '<span class="project-cue-open">View details</span><span class="project-cue-close">Close details</span>';
+      '<span class="project-cue-open">View details</span><span class="project-cue-preview">Click to keep open</span><span class="project-cue-close">Close details</span>';
 
     summary.append(meta, title, subtitle, cue);
 
@@ -415,7 +544,19 @@ function renderProjects(content) {
     }
 
     details.append(summary, body);
+    enhanceProjectDetails(details);
     miscNode.appendChild(details);
+  }
+
+  const hash = window.location.hash.replace(/^#/, "");
+  if (hash) {
+    const targetDetails = document.getElementById(hash);
+    if (targetDetails instanceof HTMLDetailsElement) {
+      targetDetails.dataset.preview = "false";
+      targetDetails.dataset.pinned = "true";
+      targetDetails.open = true;
+      targetDetails.scrollIntoView({ block: "start" });
+    }
   }
 }
 

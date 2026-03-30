@@ -8,10 +8,11 @@
       name="description"
       content="Professional experience, education, honors, and community leadership of Alan Dautov."
     />
-    <link rel="stylesheet" href="/styles.css?v=20260329" />
+    <link rel="stylesheet" href="/styles.css?v=20260330mobile-audit" />
   </head>
   <body data-page="professional">
     <header class="site-header">
+      <a class="site-header-note" href="/contact/">Available for data analysis, finance/tax, and engineering roles.</a>
       <a class="logo" href="/" aria-label="Home">AD</a>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="/">Home</a>
@@ -24,62 +25,90 @@
     </header>
 
     <main>
-      <section class="section">
-        <p class="meta">Experience</p>
-        <h1 id="professional-title">Professional Profile</h1>
-        <div id="professional-experience-list">
-          <div class="item">
-          <p class="meta">Sep 2024 - Aug 2025 | Almaty, Kazakhstan</p>
-          <h3>Corporate Tax Consultant, KPMG</h3>
-          <ul class="compact-list">
-            <li><strong>Scope:</strong> Tax reporting and compliance support for 10+ corporate clients.</li>
-            <li><strong>Execution:</strong> Analyzed CIT/VAT/WHT data in 1C, SAP, and Excel; drafted corrective recommendations.</li>
-            <li><strong>Result:</strong> Improved workflow and analysis efficiency by 20% through automation support.</li>
-          </ul>
-        </div>
+      <section class="section section-preview" data-expandable-section>
+        <button class="section-toggle-row" type="button" aria-expanded="false">
+          <p class="meta">Experience</p>
+          <p class="section-expand-cue">
+            <span class="section-cue-open">View details</span>
+            <span class="section-cue-preview">Click to keep open</span>
+            <span class="section-cue-close">Close details</span>
+          </p>
+        </button>
+        <div class="section-toggle-body">
+          <h1 id="professional-title">Professional Profile</h1>
+          <div id="professional-experience-list">
+            <div class="item">
+              <p class="meta">Sep 2024 - Aug 2025 | Almaty, Kazakhstan</p>
+              <h3>Corporate Tax Consultant, KPMG</h3>
+              <ul class="compact-list section-hidden-content">
+                <li><strong>Scope:</strong> Tax reporting and compliance support for 10+ corporate clients.</li>
+                <li><strong>Execution:</strong> Analyzed CIT/VAT/WHT data in 1C, SAP, and Excel; drafted corrective recommendations.</li>
+                <li><strong>Result:</strong> Improved workflow and analysis efficiency by 20% through automation support.</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="section">
-        <p class="meta">Skills</p>
-        <h2>Technical Focus</h2>
-        <div id="professional-skills-list" class="list-grid two">
-          <article class="item">
-            <h3>Programming</h3>
-            <ul class="compact-list">
-              <li>Python</li>
-              <li>C/C++</li>
-              <li>SQL</li>
-              <li>Java</li>
-              <li>JavaScript</li>
-            </ul>
-          </article>
-          <article class="item">
-            <h3>Cloud & Data</h3>
-            <ul class="compact-list">
-              <li>AWS</li>
-              <li>Azure</li>
-              <li>Databricks</li>
-              <li>REST APIs</li>
-              <li>CI/CD</li>
-            </ul>
-          </article>
-          <article class="item">
-            <h3>Tools</h3>
-            <ul class="compact-list">
-              <li>Git</li>
-              <li>Advanced Excel</li>
-              <li>Power BI</li>
-              <li>GenAI</li>
-            </ul>
-          </article>
-          <article class="item">
-            <h3>ERP</h3>
-            <ul class="compact-list">
-              <li>SAP</li>
-              <li>1C</li>
-            </ul>
-          </article>
+      <section class="section section-preview" data-expandable-section>
+        <div class="section-toggle-row section-label-row">
+          <p class="meta">Skills</p>
+        </div>
+        <div class="section-toggle-body">
+          <div id="professional-skills-list" class="list-grid two">
+            <article class="item skill-card">
+              <div class="skill-card-header">
+                <h3>Programming</h3>
+              </div>
+              <div class="skill-card-body section-hidden-content">
+                <ul class="compact-list">
+                  <li>Python</li>
+                  <li>C/C++</li>
+                  <li>SQL</li>
+                  <li>Java</li>
+                  <li>JavaScript</li>
+                </ul>
+              </div>
+            </article>
+            <article class="item skill-card">
+              <div class="skill-card-header">
+                <h3>Cloud & Data</h3>
+              </div>
+              <div class="skill-card-body section-hidden-content">
+                <ul class="compact-list">
+                  <li>AWS</li>
+                  <li>Azure</li>
+                  <li>Databricks</li>
+                  <li>REST APIs</li>
+                  <li>CI/CD</li>
+                </ul>
+              </div>
+            </article>
+            <article class="item skill-card">
+              <div class="skill-card-header">
+                <h3>Tools</h3>
+              </div>
+              <div class="skill-card-body section-hidden-content">
+                <ul class="compact-list">
+                  <li>Git</li>
+                  <li>Advanced Excel</li>
+                  <li>Power BI</li>
+                  <li>GenAI</li>
+                </ul>
+              </div>
+            </article>
+            <article class="item skill-card">
+              <div class="skill-card-header">
+                <h3>ERP</h3>
+              </div>
+              <div class="skill-card-body section-hidden-content">
+                <ul class="compact-list">
+                  <li>SAP</li>
+                  <li>1C</li>
+                </ul>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -87,38 +116,49 @@
         <p class="meta">Education</p>
         <div id="professional-education-list">
           <div class="item">
-          <p class="meta">Sep 2019 - May 2023 | Boston, Massachusetts</p>
-          <h3>Boston University</h3>
-          <p>Bachelor of Science in Computer Engineering</p>
-        </div>
+            <p class="meta">May 2026 - May 2028 | Boston, Massachusetts</p>
+            <h3>Boston University, Master of Science in Financial Management</h3>
+          </div>
+          <div class="item">
+            <p class="meta">Sep 2019 - May 2023 | Boston, Massachusetts</p>
+            <h3>Boston University, Bachelor of Science in Computer Engineering</h3>
+          </div>
         </div>
       </section>
 
-      <section class="section">
-        <p class="meta">Honors</p>
-        <div id="professional-honors-list" class="list-grid two">
-          <article class="item">
-            <h3>KPMG Bravo Award</h3>
-            <p>Awarded for taking ownership of complex client cases in Corporate Tax.</p>
-          </article>
-          <article class="item">
-            <h3>BU ECE Award</h3>
-            <p>Top-three Senior Design recognition for Halo from BU ECE faculty and alumni.</p>
-          </article>
+      <section class="section section-preview" data-expandable-section>
+        <div class="section-toggle-row section-label-row">
+          <p class="meta">Honors</p>
+        </div>
+        <div class="section-toggle-body">
+          <div id="professional-honors-list" class="list-grid two">
+            <div class="item">
+              <h3>KPMG Bravo Award</h3>
+              <p class="section-hidden-content">Awarded for taking ownership of complex client cases in Corporate Tax.</p>
+            </div>
+            <div class="item">
+              <h3>BU ECE Award</h3>
+              <p class="section-hidden-content">Top-three Senior Design recognition for Halo from BU ECE faculty and alumni.</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="section">
-        <p class="meta">Community</p>
-        <div id="professional-community-list">
-          <div class="item">
-          <h3>President, BU Russian Speaking Society</h3>
-          <p>Scaled membership from 70 to 500+ and led partnerships, events, and fundraising.</p>
+      <section class="section section-preview" data-expandable-section>
+        <div class="section-toggle-row section-label-row">
+          <p class="meta">Community</p>
         </div>
-          <div class="item">
-          <h3>Russian Cluster Leader, BU Global House</h3>
-          <p>Led weekly cultural discussions, organized Russian and Post-Soviet events with partner language clusters, and delivered weekly progress reports to faculty.</p>
-        </div>
+        <div class="section-toggle-body">
+          <div id="professional-community-list">
+            <div class="item">
+              <h3>President, BU Russian Speaking Society</h3>
+              <p class="section-hidden-content">Scaled membership from 70 to 500+ and led partnerships, events, and fundraising.</p>
+            </div>
+            <div class="item">
+              <h3>Russian Cluster Leader, BU Global House</h3>
+              <p class="section-hidden-content">Led weekly cultural discussions, organized Russian and Post-Soviet events with partner language clusters, and delivered weekly progress reports to faculty.</p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -130,14 +170,12 @@
         <a href="/professional/">Professional</a>
         <a href="/projects/">Projects</a>
         <a href="/personal/">Personal</a>
-        <a href="/blog/">Blog</a>
-        <a href="/hobby/">Hobbies</a>
         <a href="/contact/">Contact</a>
       </nav>
       <p>&copy; <span id="year"></span> Alan Dautov.</p>
     </footer>
 
-    <script src="/content/professional.js?v=20260305b"></script>
-    <script src="/script.js"></script>
+    <script src="/content/professional.js?v=20260330mobile-audit"></script>
+    <script src="/script.js?v=20260330mobile-audit"></script>
   </body>
 </html>
