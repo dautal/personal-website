@@ -22,7 +22,7 @@ window.SITE_CONTENT = {
       {
         value: "Designed & Built",
         text: "notebook-inspired weekly planner for structured digital planning",
-        actionLabel: "Dnevnik",
+        actionLabel: "Nev",
         actionHref: "/projects/#dnevnik-todo-calendar",
       },
       {
