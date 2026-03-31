@@ -25,14 +25,14 @@ window.SITE_CONTENT = {
         stack: "React, TypeScript, Vite, Supabase, localStorage fallback, Vercel",
         links: [
           {
-            label: "Try Nev",
-            href: "https://dnevnik-todo-calendar.vercel.app/#",
-            newTab: true,
-          },
-          {
             label: "Learn More",
             href: "/projects/dnevnik-todo-calendar/",
             primary: true,
+          },
+          {
+            label: "Try Nev",
+            href: "https://dnevnik-todo-calendar.vercel.app/#",
+            newTab: true,
           },
         ],
       },
