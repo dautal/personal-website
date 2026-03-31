@@ -6,12 +6,12 @@ window.SITE_CONTENT = {
         slug: "dnevnik-todo-calendar",
         meta: "2026 | Product Design, Full-Stack Planning System",
         detailMeta: "Jul 2025 - Present",
-        title: "Dnevnik Todo Calendar",
+        title: "Nev Todo Calendar",
         subtitle: "A weekly planner that turns paper-journal discipline into a calm digital product.",
         bullets: [
           {
             label: "Product",
-            text: "Designed a two-page weekly spread that borrows the structure and discipline of a Soviet and post-Soviet paper dnevnik rather than the endless-feed feel of a typical to-do app.",
+            text: "Designed a two-page weekly spread that borrows the structure and discipline of a Soviet and post-Soviet paper planner rather than the endless-feed feel of a typical to-do app.",
           },
           {
             label: "UX",
@@ -24,6 +24,11 @@ window.SITE_CONTENT = {
         ],
         stack: "React, TypeScript, Vite, Supabase, localStorage fallback, Vercel",
         links: [
+          {
+            label: "Try Nev",
+            href: "https://dnevnik-todo-calendar.vercel.app/#",
+            newTab: true,
+          },
           {
             label: "Learn More",
             href: "/projects/dnevnik-todo-calendar/",
