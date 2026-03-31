@@ -139,15 +139,37 @@ function renderHome(content) {
 
       wrapper.append(value, text);
 
-      if (stat.actionLabel && stat.actionHref) {
-        const action = makeLink(
-          {
-            href: stat.actionHref,
-            label: stat.actionLabel,
-          },
-          "stat-action",
-        );
-        wrapper.appendChild(action);
+      if (
+        (stat.secondaryActionLabel && stat.secondaryActionHref) ||
+        (stat.actionLabel && stat.actionHref)
+      ) {
+        const actions = document.createElement("div");
+        actions.className = "stat-actions";
+
+        if (stat.actionLabel && stat.actionHref) {
+          const action = makeLink(
+            {
+              href: stat.actionHref,
+              label: stat.actionLabel,
+            },
+            "stat-action",
+          );
+          actions.appendChild(action);
+        }
+
+        if (stat.secondaryActionLabel && stat.secondaryActionHref) {
+          const secondaryAction = makeLink(
+            {
+              href: stat.secondaryActionHref,
+              label: stat.secondaryActionLabel,
+              newTab: stat.secondaryActionNewTab,
+            },
+            "stat-action secondary",
+          );
+          actions.appendChild(secondaryAction);
+        }
+
+        wrapper.appendChild(actions);
       }
 
       statsNode.appendChild(wrapper);

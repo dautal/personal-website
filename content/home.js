@@ -22,6 +22,9 @@ window.SITE_CONTENT = {
       {
         value: "Designed & Built",
         text: "notebook-inspired weekly planner for structured digital planning",
+        secondaryActionLabel: "Try Nev",
+        secondaryActionHref: "https://dnevnik-todo-calendar.vercel.app/#",
+        secondaryActionNewTab: true,
         actionLabel: "Nev",
         actionHref: "/projects/#dnevnik-todo-calendar",
       },
