@@ -587,6 +587,7 @@ function renderContact(content) {
   setText("contact-meta", content.meta);
   setText("contact-title", content.title);
   setText("contact-intro", content.intro);
+  setText("contact-privacy-note", content.privacyNote);
 
   const methodsNode = document.getElementById("contact-methods");
   clearNode(methodsNode);
