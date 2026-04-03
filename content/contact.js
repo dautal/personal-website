@@ -4,6 +4,8 @@ window.SITE_CONTENT = {
     title: "Let's Connect",
     intro:
       "Reach me via email, phone, and professional platforms. I usually respond within one business day.",
+    privacyNote:
+      "Privacy note: this site uses Google Fonts, which may result in requests to Google font servers when pages load.",
     methods: [
       {
         title: "Email",
