@@ -8,7 +8,7 @@ window.SITE_CONTENT = {
     ctas: [
       {
         label: "View Resume",
-        href: "/AlanDautov_Resume_2026.pdf",
+        href: "/Alan-Dautov-Resume.pdf",
         primary: true,
         newTab: true,
       },
