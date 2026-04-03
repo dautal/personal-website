@@ -30,7 +30,7 @@ window.SITE_CONTENT = {
         title: "Resume",
         value: "Latest CV and experience",
         actionLabel: "Open resume",
-        href: "/AlanDautov_Resume_2026.pdf",
+        href: "/Alan-Dautov-Resume.pdf",
         newTab: true,
       },
       {
