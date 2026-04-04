@@ -282,6 +282,7 @@ body[data-page="personal"] {
   flex-direction: column;
 }
 
+body[data-page="projects"],
 body[data-page="professional"],
 body[data-page="home"],
 body[data-page="bio"],
@@ -302,6 +303,7 @@ body[data-page="personal"] .site-footer {
   margin-top: auto;
 }
 
+body[data-page="projects"] main,
 body[data-page="professional"] main,
 body[data-page="home"] main,
 body[data-page="bio"] main,
@@ -312,6 +314,7 @@ body[data-page="photography"] .hobby-main {
   flex: 1 0 auto;
 }
 
+body[data-page="projects"] .site-footer,
 body[data-page="professional"] .site-footer,
 body[data-page="home"] .site-footer,
 body[data-page="bio"] .site-footer,
