@@ -9,5 +9,11 @@ Static personal website with:
 
 ## Editing Content Quickly
 
-Update text content in `content.js`.
-The main pages (`index`, `bio`, `professional`, `projects`) render their copy from that file.
+Update page content in the files under `content/`:
+- `content/home.js`
+- `content/professional.js`
+- `content/projects.js`
+- `content/contact.js`
+- `content/bio.js`
+
+The shared renderer in `script.js` hydrates the matching page shell based on `body[data-page]`.
