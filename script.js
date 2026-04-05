@@ -6,7 +6,7 @@ function setText(id, value) {
   }
 }
 
-// Helper: set HTML content by element id (used when content includes tags like <strong>).
+// Helper: set trusted HTML content by element id.
 function setHtml(id, value) {
   const node = document.getElementById(id);
   if (node && typeof value === "string") {
@@ -34,6 +34,204 @@ function makeLink(link, className) {
     a.rel = "noreferrer";
   }
   return a;
+}
+
+// Helper: render a text paragraph with a bold label prefix without using HTML strings.
+function makeLabeledParagraph(className, label, text) {
+  const paragraph = document.createElement("p");
+  paragraph.className = className;
+
+  const strong = document.createElement("strong");
+  strong.textContent = `${label}:`;
+
+  paragraph.append(strong, ` ${text}`);
+  return paragraph;
+}
+
+// Helper: build the project open/preview/close cue.
+function makeProjectCue() {
+  const cue = document.createElement("p");
+  cue.className = "project-expand-cue";
+
+  const openCue = document.createElement("span");
+  openCue.className = "project-cue-open";
+  openCue.textContent = "View details";
+
+  const previewCue = document.createElement("span");
+  previewCue.className = "project-cue-preview";
+  previewCue.textContent = "Click to keep open";
+
+  const closeCue = document.createElement("span");
+  closeCue.className = "project-cue-close";
+  closeCue.textContent = "Close details";
+
+  cue.append(openCue, previewCue, closeCue);
+  return cue;
+}
+
+const TEXT_CASE_STORAGE_KEY = "siteTextCase";
+const DEFAULT_TEXT_CASE = "lowercase";
+
+function getTextCasePreference() {
+  const stored = window.localStorage.getItem(TEXT_CASE_STORAGE_KEY);
+  return stored === "standard" || stored === "lowercase" ? stored : DEFAULT_TEXT_CASE;
+}
+
+function applyTextCasePreference(mode) {
+  document.body.dataset.textCase = mode;
+}
+
+function initTextCaseSetting() {
+  const footerLabels = Array.from(document.querySelectorAll(".site-footer p"));
+  if (!footerLabels.length) {
+    applyTextCasePreference(getTextCasePreference());
+    return;
+  }
+
+  const buttons = footerLabels.map((labelNode) => {
+    const separator = document.createElement("span");
+    separator.className = "footer-case-separator";
+    separator.textContent = " · ";
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "footer-case-toggle";
+
+    labelNode.append(separator, button);
+    return button;
+  });
+
+  const sync = () => {
+    const mode = getTextCasePreference();
+    const isLowercase = mode === "lowercase";
+
+    applyTextCasePreference(mode);
+    buttons.forEach((button) => {
+      button.textContent = isLowercase ? "text: lower" : "text: standard";
+      button.setAttribute("aria-pressed", String(isLowercase));
+      button.setAttribute("aria-label", "Toggle site text case");
+    });
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const currentMode = getTextCasePreference();
+      const nextMode = currentMode === "lowercase" ? "standard" : "lowercase";
+      window.localStorage.setItem(TEXT_CASE_STORAGE_KEY, nextMode);
+      sync();
+    });
+  });
+
+  sync();
+}
+
+// Adds a mobile hamburger toggle to any shared site header.
+function initResponsiveHeader() {
+  const headers = Array.from(document.querySelectorAll(".site-header"));
+  const mobileBreakpoint = window.matchMedia("(max-width: 960px)");
+
+  headers.forEach((header, index) => {
+    if (!(header instanceof HTMLElement)) {
+      return;
+    }
+
+    const nav = header.querySelector(".main-nav");
+    if (!(nav instanceof HTMLElement)) {
+      return;
+    }
+
+    let brand = header.querySelector(".logo, .brand");
+    if (!(brand instanceof HTMLElement)) {
+      const fallbackBrand = document.createElement("a");
+      fallbackBrand.className = "brand";
+      fallbackBrand.href = "/";
+      fallbackBrand.setAttribute("aria-label", "Home");
+      fallbackBrand.textContent = "dautaln";
+      header.insertBefore(fallbackBrand, nav);
+      brand = fallbackBrand;
+    }
+
+    const navId = nav.id || `site-nav-${index + 1}`;
+    nav.id = navId;
+
+    const toggle = document.createElement("button");
+    toggle.className = "nav-toggle";
+    toggle.type = "button";
+    toggle.setAttribute("aria-controls", navId);
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Toggle navigation menu");
+
+    for (let count = 0; count < 3; count += 1) {
+      const line = document.createElement("span");
+      line.className = "nav-toggle-line";
+      toggle.appendChild(line);
+    }
+
+    header.appendChild(toggle);
+
+    const setOpen = (open) => {
+      header.classList.toggle("nav-open", open);
+      document.body.classList.toggle("menu-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+    };
+
+    const updateCollapsedState = () => {
+      if (mobileBreakpoint.matches) {
+        header.classList.add("header-collapsed");
+        return;
+      }
+
+      header.classList.remove("header-collapsed");
+
+      const brandWidth = brand.getBoundingClientRect().width;
+      const brandStyles = window.getComputedStyle(brand);
+      const brandOffset = parseFloat(brandStyles.marginLeft || "0");
+      const availableNavWidth = header.clientWidth - brandWidth - brandOffset - 24;
+      const shouldCollapse = nav.scrollWidth > availableNavWidth;
+
+      header.classList.toggle("header-collapsed", shouldCollapse);
+      if (!shouldCollapse) {
+        setOpen(false);
+      }
+    };
+
+    toggle.addEventListener("click", () => {
+      setOpen(!header.classList.contains("nav-open"));
+    });
+
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        setOpen(false);
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Node)) {
+        return;
+      }
+
+      if (!header.classList.contains("nav-open")) {
+        return;
+      }
+
+      if (header.contains(target) || nav.contains(target)) {
+        return;
+      }
+
+      setOpen(false);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    });
+
+    window.addEventListener("resize", updateCollapsedState);
+    mobileBreakpoint.addEventListener("change", updateCollapsedState);
+    updateCollapsedState();
+  });
 }
 
 // Adds hover-preview + click-to-pin behavior to project details cards.
@@ -105,14 +303,16 @@ function renderCompactList(points) {
   return ul;
 }
 
-// Renders Home page dynamic sections (hero text, CTAs, stats, preview cards).
+// Renders Home page dynamic sections (banner, hero text, CTAs, stats).
 function renderHome(content) {
-  setText("home-hero-note", content.heroNote);
-  setText("home-value-meta", content.valueMeta);
+  setText("home-banner", content.heroNote);
+  if (typeof content.valueMetaHtml === "string") {
+    setHtml("home-value-meta", content.valueMetaHtml);
+  } else {
+    setText("home-value-meta", content.valueMeta);
+  }
   setText("home-headline", content.headline);
   setHtml("home-intro", content.intro);
-  setText("home-proof-meta", content.proofMeta);
-  setText("home-proof-heading", content.proofHeading);
 
   // Replace CTA buttons from content config.
   const ctaNode = document.getElementById("home-cta");
@@ -175,41 +375,20 @@ function renderHome(content) {
       statsNode.appendChild(wrapper);
     });
   }
-
-  // Rebuild preview cards if the section exists on the page.
-  const previewsNode = document.getElementById("home-previews");
-  clearNode(previewsNode);
-  if (previewsNode) {
-    content.previews.forEach((preview) => {
-      const article = document.createElement("article");
-      article.className = "item";
-
-      const meta = document.createElement("p");
-      meta.className = "meta";
-      meta.textContent = preview.meta;
-
-      const title = document.createElement("h3");
-      title.textContent = preview.title;
-
-      const text = document.createElement("p");
-      text.textContent = preview.text;
-
-      const link = makeLink({
-        href: preview.href,
-        label: preview.linkLabel,
-      });
-
-      article.append(meta, title, text, link);
-      previewsNode.appendChild(article);
-    });
-  }
-
 }
 
 // Renders Bio page text fields.
 function renderBio(content) {
   setText("bio-title", content.title);
   setText("bio-intro", content.intro);
+}
+
+// Renders Privacy page content.
+function renderPrivacy(content) {
+  setText("privacy-meta", content.meta);
+  setText("privacy-title", content.title);
+  setHtml("privacy-intro", content.intro);
+  setHtml("privacy-details", content.details);
 }
 
 // Renders Professional page sections: experience, skills, education, honors, community.
@@ -429,23 +608,7 @@ function renderProjects(content) {
           summary.appendChild(subtitle);
         }
 
-        const cue = document.createElement("p");
-        cue.className = "project-expand-cue";
-
-        const openCue = document.createElement("span");
-        openCue.className = "project-cue-open";
-        openCue.textContent = "View details";
-
-        const previewCue = document.createElement("span");
-        previewCue.className = "project-cue-preview";
-        previewCue.textContent = "Click to keep open";
-
-        const closeCue = document.createElement("span");
-        closeCue.className = "project-cue-close";
-        closeCue.textContent = "Close details";
-
-        cue.append(openCue, previewCue, closeCue);
-        summary.appendChild(cue);
+        summary.appendChild(makeProjectCue());
 
         details.appendChild(summary);
 
@@ -470,24 +633,19 @@ function renderProjects(content) {
         }
 
         if (project.stack) {
-          const stack = document.createElement("p");
-          stack.className = "project-stack";
-          stack.innerHTML = `<strong>Stack:</strong> ${project.stack}`;
-          detailsBody.appendChild(stack);
+          detailsBody.appendChild(makeLabeledParagraph("project-stack", "Stack", project.stack));
         }
 
         if (project.why) {
-          const why = document.createElement("p");
-          why.className = "project-note";
-          why.innerHTML = `<strong>Why I built it:</strong> ${project.why}`;
-          detailsBody.appendChild(why);
+          detailsBody.appendChild(
+            makeLabeledParagraph("project-note", "Why I built it", project.why),
+          );
         }
 
         if (project.future) {
-          const future = document.createElement("p");
-          future.className = "project-note";
-          future.innerHTML = `<strong>Future direction:</strong> ${project.future}`;
-          detailsBody.appendChild(future);
+          detailsBody.appendChild(
+            makeLabeledParagraph("project-note", "Future direction", project.future),
+          );
         }
 
         if (project.links?.length) {
@@ -544,12 +702,7 @@ function renderProjects(content) {
     subtitle.className = "project-subtitle";
     subtitle.textContent = content.miscellaneous.subtitle || "";
 
-    const cue = document.createElement("p");
-    cue.className = "project-expand-cue";
-    cue.innerHTML =
-      '<span class="project-cue-open">View details</span><span class="project-cue-preview">Click to keep open</span><span class="project-cue-close">Close details</span>';
-
-    summary.append(meta, title, subtitle, cue);
+    summary.append(meta, title, subtitle, makeProjectCue());
 
     const body = document.createElement("div");
     body.className = "project-details-body";
@@ -587,30 +740,62 @@ function renderContact(content) {
   setText("contact-meta", content.meta);
   setText("contact-title", content.title);
   setText("contact-intro", content.intro);
-  setText("contact-privacy-note", content.privacyNote);
 
   const methodsNode = document.getElementById("contact-methods");
   clearNode(methodsNode);
   if (methodsNode) {
-    content.methods.forEach((method) => {
+    const methods = [
+      ...content.methods,
+      {
+        title: "Privacy Policy",
+        value: "Details",
+        actionLabel: "Open privacy page",
+        href: "/privacy/",
+        iconSvg:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3.4 8.9-7 10-3.6-1.1-7-5-7-10V6l7-3z"></path><path d="M9.5 11.5V10a2.5 2.5 0 0 1 5 0v1.5"></path><rect x="8.5" y="11.5" width="7" height="5" rx="1"></rect></svg>',
+      },
+    ];
+
+    methods.forEach((method) => {
       const article = document.createElement("article");
-      article.className = "item";
+      article.className = "item contact-method";
+
+      const header = document.createElement("div");
+      header.className = "contact-method-header";
+
+      if (typeof method.iconSvg === "string") {
+        const badge = document.createElement("div");
+        badge.className = "contact-method-icon";
+        badge.setAttribute("aria-hidden", "true");
+        badge.innerHTML = method.iconSvg;
+
+        if (method.href) {
+          const iconLink = document.createElement("a");
+          iconLink.className = "contact-method-icon-link";
+          iconLink.href = method.href;
+          iconLink.setAttribute("aria-label", method.actionLabel || method.title);
+          if (method.newTab) {
+            iconLink.target = "_blank";
+            iconLink.rel = "noreferrer";
+          }
+          iconLink.appendChild(badge);
+          header.appendChild(iconLink);
+        } else {
+          const iconShell = document.createElement("div");
+          iconShell.className = "contact-method-icon-shell";
+          iconShell.appendChild(badge);
+          header.appendChild(iconShell);
+        }
+      }
 
       const title = document.createElement("h3");
       title.textContent = method.title;
+      header.appendChild(title);
 
       const value = document.createElement("p");
       value.textContent = method.value;
 
-      const link = makeLink(
-        {
-          href: method.href,
-          label: method.actionLabel,
-          newTab: Boolean(method.newTab),
-        },
-      );
-
-      article.append(title, value, link);
+      article.append(header, value);
       methodsNode.appendChild(article);
     });
   }
@@ -632,6 +817,10 @@ function renderPageContent() {
     renderBio(content.bio);
   }
 
+  if (page === "privacy" && content.privacy) {
+    renderPrivacy(content.privacy);
+  }
+
   if (page === "professional" && content.professional) {
     renderProfessional(content.professional);
   }
@@ -640,8 +829,11 @@ function renderPageContent() {
     renderProjects(content.projects);
   }
 
-  if (page === "contact" && content.contactPage) {
-    renderContact(content.contactPage);
+  if (page === "contact") {
+    const contactContent = content.contact || content.contactPage;
+    if (contactContent) {
+      renderContact(contactContent);
+    }
   }
 }
 
@@ -651,4 +843,6 @@ if (yearNode) {
   yearNode.textContent = String(new Date().getFullYear());
 }
 
+initTextCaseSetting();
+initResponsiveHeader();
 renderPageContent();
