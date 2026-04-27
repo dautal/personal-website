@@ -9,7 +9,7 @@ window.SITE_CONTENT = {
         meta: "Featured Collection",
         title: "Almaty Collection",
         description: "City views, mountains, and everyday scenes from Almaty, Kazakhstan.",
-        href: "/photography/almaty-collection/",
+        href: "/arts/almaty-collection/",
         countLabel: "119 frames",
         linkLabel: "Open collection",
         previewPhotos: [
@@ -43,7 +43,7 @@ window.SITE_CONTENT = {
         meta: "Placeholder Collection",
         title: "Boston Collection",
         description: "Street light, water, winter air, and everyday scenes from Boston.",
-        href: "/photography/boston-collection/",
+        href: "/arts/boston-collection/",
         countLabel: "10 placeholder frames",
         linkLabel: "Open collection",
         previewPhotos: [
