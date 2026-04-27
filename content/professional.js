@@ -3,6 +3,10 @@ window.SITE_CONTENT = {
     title: "Professional Profile",
     experience: [
       {
+        meta: "May 2026 - Present | Boston, Massachusetts",
+        role: "Private Markets Custody Ops, State Street",
+      },
+      {
         meta: "Sep 2024 - Aug 2025 | Almaty, Kazakhstan",
         role: "Corporate Tax Consultant, KPMG",
         bullets: [

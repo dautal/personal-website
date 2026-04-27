@@ -1,9 +1,7 @@
 window.SITE_CONTENT = {
   home: {
-    heroNote: "Available for data analysis, finance/tax, and engineering roles.",
     valueMeta: "About Alan Dautov",
     valueMetaHtml: "About <strong>Alan Dautov</strong>",
-    headline: "Meaningful impact drives me",
     intro:
       "<strong>Former KPMG Corporate Tax consultant and Boston University Computer Engineering graduate. Admitted for the Master of Science in Financial Management program at Boston University (Expected: May 2028)</strong><br /><br />A well-rounded engineer who adapts quickly across technologies and business domains. With experience in finance, software, data, cloud, and enterprise systems, I focus on building practical solutions that connect technology with real-world needs.",
     ctas: [

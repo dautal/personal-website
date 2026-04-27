@@ -3,9 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Photography | Alan Dautov</title>
-    <meta name="description" content="Photography section with selected frames and visual notes." />
-    <link rel="stylesheet" href="/styles.css?v=20260405privacy" />
+    <title>Arts Collections | Alan Dautov</title>
+    <meta
+      name="description"
+      content="Curated arts collections featuring places, atmosphere, and visual studies."
+    />
+    <link rel="stylesheet" href="/styles.css?v=20260427arts-card-stack-2" />
     <link rel="icon" type="image/png" href="/logo/logo.png" />
     <link rel="apple-touch-icon" href="/logo/logo.png" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -14,16 +17,19 @@
     <header class="site-header compact">
       <nav class="main-nav" aria-label="Main navigation">
         <a href="/">Home</a>
-        <a href="/hobby/">Hobbies</a>
-        <a class="is-active" href="/photography/">Photography</a>
-        <a href="/blog/">Blog</a>
+        <a class="is-active" href="/photography/">Arts</a>
       </nav>
     </header>
 
-    <main class="hobby-main">
-      <section class="panel reveal">
-        <p class="eyebrow">Photography</p>
-        <h1>Coming soon</h1>
+    <main class="photography-main">
+      <section class="section photography-hero">
+        <p id="photography-meta" class="meta"></p>
+        <h1 id="photography-title"></h1>
+        <p id="photography-intro" class="page-intro"></p>
+      </section>
+
+      <section class="section">
+        <div id="photography-collections" class="photography-collection-grid"></div>
       </section>
     </main>
 
@@ -32,11 +38,13 @@
         <a href="/">Home</a>
         <a href="/professional/">Professional</a>
         <a href="/projects/">Projects</a>
+        <a href="/photography/">Arts</a>
         <a href="/contact/">Contact</a>
       </nav>
       <p>&copy; <span id="year"></span> dautaln</p>
     </footer>
 
-    <script src="/script.js?v=20260405privacy"></script>
+    <script src="/content/photography.js?v=20260427arts-card-stack-2"></script>
+    <script src="/script.js?v=20260427arts-card-stack-2"></script>
   </body>
 </html>

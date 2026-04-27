@@ -48,7 +48,7 @@ function makeLabeledParagraph(className, label, text) {
   return paragraph;
 }
 
-// Helper: build the project open/preview/close cue.
+// Helper: build the project open/close cue.
 function makeProjectCue() {
   const cue = document.createElement("p");
   cue.className = "project-expand-cue";
@@ -57,15 +57,11 @@ function makeProjectCue() {
   openCue.className = "project-cue-open";
   openCue.textContent = "View details";
 
-  const previewCue = document.createElement("span");
-  previewCue.className = "project-cue-preview";
-  previewCue.textContent = "Click to keep open";
-
   const closeCue = document.createElement("span");
   closeCue.className = "project-cue-close";
   closeCue.textContent = "Close details";
 
-  cue.append(openCue, previewCue, closeCue);
+  cue.append(openCue, closeCue);
   return cue;
 }
 
@@ -234,56 +230,11 @@ function initResponsiveHeader() {
   });
 }
 
-// Adds hover-preview + click-to-pin behavior to project details cards.
+// Uses native details/summary click behavior for project cards.
 function enhanceProjectDetails(details) {
   if (!(details instanceof HTMLDetailsElement)) {
     return;
   }
-
-  const summary = details.querySelector("summary");
-  if (!(summary instanceof HTMLElement)) {
-    return;
-  }
-
-  details.dataset.pinned = details.open ? "true" : "false";
-  details.dataset.preview = "false";
-
-  summary.addEventListener("click", (event) => {
-    event.preventDefault();
-
-    const pinned = details.dataset.pinned === "true";
-    const previewing = details.dataset.preview === "true";
-
-    if (previewing && !pinned) {
-      details.dataset.preview = "false";
-      details.dataset.pinned = "true";
-      details.open = true;
-      return;
-    }
-
-    const nextPinned = !pinned;
-    details.dataset.preview = "false";
-    details.dataset.pinned = String(nextPinned);
-    details.open = nextPinned;
-  });
-
-  details.addEventListener("mouseenter", () => {
-    if (details.dataset.pinned === "true") {
-      return;
-    }
-
-    details.dataset.preview = "true";
-    details.open = true;
-  });
-
-  details.addEventListener("mouseleave", () => {
-    if (details.dataset.pinned === "true") {
-      return;
-    }
-
-    details.dataset.preview = "false";
-    details.open = false;
-  });
 }
 
 // Builds bullet lists used in Professional and Projects cards.
@@ -301,6 +252,180 @@ function renderCompactList(points) {
   });
 
   return ul;
+}
+
+const photoLightboxState = {
+  photos: [],
+  currentIndex: 0,
+  collectionTitle: "",
+  opener: null,
+};
+
+function makePhotoSurface(photo, context) {
+  const frame = document.createElement("figure");
+  frame.className = `photo-frame ${context ? `is-${context}` : ""}`.trim();
+
+  const imageSrc =
+    context === "lightbox"
+      ? photo.fullSrc || photo.src || photo.thumbSrc
+      : photo.thumbSrc || photo.src;
+
+  if (imageSrc) {
+    const image = document.createElement("img");
+    image.className = "photo-image";
+    image.src = imageSrc;
+    image.alt = photo.alt || photo.title || "";
+    image.loading = context === "lightbox" ? "eager" : "lazy";
+    image.decoding = "async";
+    if (photo.width) {
+      image.width = photo.width;
+    }
+    if (photo.height) {
+      image.height = photo.height;
+    }
+    frame.appendChild(image);
+    return frame;
+  }
+
+  const placeholder = document.createElement("div");
+  placeholder.className = `photo-placeholder is-${photo.orientation || "landscape"} tone-${
+    photo.tone || "stone"
+  } ${context ? `is-${context}` : ""}`.trim();
+  placeholder.setAttribute("role", "img");
+  placeholder.setAttribute("aria-label", photo.alt || photo.title || "Photo placeholder");
+
+  frame.appendChild(placeholder);
+  return frame;
+}
+
+function ensurePhotoLightbox() {
+  let lightbox = document.getElementById("photo-lightbox");
+  if (lightbox) {
+    return lightbox;
+  }
+
+  lightbox = document.createElement("div");
+  lightbox.id = "photo-lightbox";
+  lightbox.className = "photo-lightbox";
+  lightbox.hidden = true;
+  lightbox.innerHTML = `
+    <div class="photo-lightbox-backdrop" data-photo-lightbox-close="true"></div>
+    <div class="photo-lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="photo-lightbox-title">
+      <button type="button" class="photo-lightbox-close" data-photo-lightbox-close="true" aria-label="Close gallery view">Close</button>
+      <div class="photo-lightbox-shell">
+        <button type="button" class="photo-lightbox-nav prev" data-photo-lightbox-step="-1" aria-label="Previous photo">Prev</button>
+        <div class="photo-lightbox-stage">
+          <div class="photo-lightbox-media" data-photo-lightbox-media></div>
+          <div class="photo-lightbox-copy">
+            <p class="meta" id="photo-lightbox-meta"></p>
+            <h2 id="photo-lightbox-title"></h2>
+            <p id="photo-lightbox-note" class="photo-lightbox-note"></p>
+          </div>
+        </div>
+        <button type="button" class="photo-lightbox-nav next" data-photo-lightbox-step="1" aria-label="Next photo">Next</button>
+      </div>
+    </div>
+  `;
+
+  lightbox.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    if (target.dataset.photoLightboxClose === "true") {
+      closePhotoLightbox();
+      return;
+    }
+
+    if (target.dataset.photoLightboxStep) {
+      stepPhotoLightbox(Number(target.dataset.photoLightboxStep));
+    }
+  });
+
+  document.body.appendChild(lightbox);
+  return lightbox;
+}
+
+function renderPhotoLightboxSlide() {
+  const lightbox = ensurePhotoLightbox();
+  const photo = photoLightboxState.photos[photoLightboxState.currentIndex];
+  if (!photo) {
+    return;
+  }
+
+  const mediaNode = lightbox.querySelector("[data-photo-lightbox-media]");
+  if (mediaNode instanceof HTMLElement) {
+    clearNode(mediaNode);
+    mediaNode.appendChild(makePhotoSurface(photo, "lightbox"));
+  }
+
+  const metaBits = [];
+  if (photo.title) {
+    metaBits.push(photo.title);
+  }
+  if (photoLightboxState.collectionTitle) {
+    metaBits.push(photoLightboxState.collectionTitle);
+  }
+  metaBits.push(`${photoLightboxState.currentIndex + 1} / ${photoLightboxState.photos.length}`);
+
+  setText("photo-lightbox-meta", metaBits.join(" · "));
+  setText("photo-lightbox-title", "");
+  setText("photo-lightbox-note", "");
+
+  const navButtons = Array.from(lightbox.querySelectorAll("[data-photo-lightbox-step]"));
+  navButtons.forEach((button) => {
+    if (button instanceof HTMLElement) {
+      button.hidden = photoLightboxState.photos.length <= 1;
+    }
+  });
+}
+
+function openPhotoLightbox(photos, index, collectionTitle, opener) {
+  if (!photos?.length) {
+    return;
+  }
+
+  photoLightboxState.photos = photos;
+  photoLightboxState.currentIndex = index;
+  photoLightboxState.collectionTitle = collectionTitle || "";
+  photoLightboxState.opener = opener instanceof HTMLElement ? opener : null;
+
+  const lightbox = ensurePhotoLightbox();
+  lightbox.hidden = false;
+  document.body.classList.add("photo-lightbox-open");
+  renderPhotoLightboxSlide();
+
+  const closeButton = lightbox.querySelector(".photo-lightbox-close");
+  if (closeButton instanceof HTMLElement) {
+    closeButton.focus();
+  }
+}
+
+function closePhotoLightbox() {
+  const lightbox = document.getElementById("photo-lightbox");
+  if (!(lightbox instanceof HTMLElement) || lightbox.hidden) {
+    return;
+  }
+
+  lightbox.hidden = true;
+  document.body.classList.remove("photo-lightbox-open");
+
+  if (photoLightboxState.opener instanceof HTMLElement) {
+    photoLightboxState.opener.focus();
+  }
+}
+
+function stepPhotoLightbox(direction) {
+  if (!photoLightboxState.photos.length) {
+    return;
+  }
+
+  const nextIndex =
+    (photoLightboxState.currentIndex + direction + photoLightboxState.photos.length) %
+    photoLightboxState.photos.length;
+  photoLightboxState.currentIndex = nextIndex;
+  renderPhotoLightboxSlide();
 }
 
 // Renders Home page dynamic sections (banner, hero text, CTAs, stats).
@@ -409,10 +534,12 @@ function renderProfessional(content) {
       const role = document.createElement("h3");
       role.textContent = entry.role;
 
-      const details = renderCompactList(entry.bullets);
-      details.classList.add("section-hidden-content");
+      item.append(meta, role);
 
-      item.append(meta, role, details);
+      if (entry.bullets?.length) {
+        const details = renderCompactList(entry.bullets);
+        item.appendChild(details);
+      }
       experienceNode.appendChild(item);
     });
   }
@@ -449,7 +576,6 @@ function renderProfessional(content) {
       });
 
       body.appendChild(list);
-      body.classList.add("section-hidden-content");
       article.append(header, body);
       skillsNode.appendChild(article);
     });
@@ -486,7 +612,6 @@ function renderProfessional(content) {
 
       const text = document.createElement("p");
       text.textContent = entry.text;
-      text.classList.add("section-hidden-content");
 
       article.append(title, text);
       honorsNode.appendChild(article);
@@ -505,64 +630,9 @@ function renderProfessional(content) {
 
       const text = document.createElement("p");
       text.textContent = entry.text;
-      text.classList.add("section-hidden-content");
 
       item.append(role, text);
       communityNode.appendChild(item);
-    });
-  }
-
-  const expandableSections = Array.from(document.querySelectorAll("[data-expandable-section]"));
-  const setSectionExpanded = (section, expanded) => {
-    if (!(section instanceof HTMLElement)) {
-      return;
-    }
-
-    section.classList.toggle("is-expanded", expanded);
-    const toggle = section.querySelector(".section-toggle-row");
-    if (toggle instanceof HTMLElement) {
-      toggle.setAttribute("aria-expanded", String(expanded));
-    }
-  };
-
-  expandableSections.forEach((section, index) => {
-    const toggle = section.querySelector(".section-toggle-row");
-    if (!(toggle instanceof HTMLElement)) {
-      return;
-    }
-
-    if (index !== 0) {
-      return;
-    }
-
-    toggle.onclick = () => {
-      const nextExpanded = !section.classList.contains("is-expanded");
-      expandableSections.forEach((targetSection) => {
-        setSectionExpanded(targetSection, nextExpanded);
-      });
-    };
-
-    section.classList.add("section-master-toggle");
-    section.onclick = (event) => {
-      const target = event.target;
-      if (!(target instanceof HTMLElement)) {
-        return;
-      }
-
-      if (target.closest("a, button")) {
-        return;
-      }
-
-      const nextExpanded = !section.classList.contains("is-expanded");
-      expandableSections.forEach((targetSection) => {
-        setSectionExpanded(targetSection, nextExpanded);
-      });
-    };
-  });
-
-  if (window.location.hash === "#experience") {
-    expandableSections.forEach((section) => {
-      setSectionExpanded(section, true);
     });
   }
 
@@ -727,8 +797,6 @@ function renderProjects(content) {
   if (hash) {
     const targetDetails = document.getElementById(hash);
     if (targetDetails instanceof HTMLDetailsElement) {
-      targetDetails.dataset.preview = "false";
-      targetDetails.dataset.pinned = "true";
       targetDetails.open = true;
       targetDetails.scrollIntoView({ block: "start" });
     }
@@ -801,6 +869,107 @@ function renderContact(content) {
   }
 }
 
+// Renders Photography collection landing page.
+function renderPhotography(content) {
+  setText("photography-meta", content.meta);
+  setText("photography-title", content.title);
+  setText("photography-intro", content.intro);
+
+  const collectionsNode = document.getElementById("photography-collections");
+  clearNode(collectionsNode);
+  if (!collectionsNode) {
+    return;
+  }
+
+  content.collections.forEach((collection) => {
+    const article = document.createElement("article");
+    article.className = "collection-card";
+
+    const link = document.createElement("a");
+    link.className = "collection-card-link";
+    link.href = collection.href;
+    link.setAttribute("aria-label", `Open ${collection.title}`);
+
+    const preview = document.createElement("div");
+    preview.className = "collection-preview-grid";
+
+    const previewPhotos = collection.previewPhotos?.length
+      ? collection.previewPhotos.slice(0, 4)
+      : [{ title: collection.title, orientation: "landscape", tone: "stone" }];
+
+    previewPhotos.forEach((photo, index) => {
+      const tile = document.createElement("div");
+      tile.className = "collection-preview-tile";
+      tile.appendChild(makePhotoSurface(photo, "collection-preview"));
+      preview.appendChild(tile);
+    });
+
+    const copy = document.createElement("div");
+    copy.className = "collection-card-copy";
+
+    const meta = document.createElement("p");
+    meta.className = "meta";
+    meta.textContent = collection.meta || "Collection";
+
+    const title = document.createElement("h2");
+    title.textContent = collection.title;
+
+    const description = document.createElement("p");
+    description.className = "collection-card-description";
+    description.textContent = collection.description;
+
+    const footer = document.createElement("div");
+    footer.className = "collection-card-footer";
+
+    const count = document.createElement("div");
+    count.className = "collection-card-count";
+    count.textContent = collection.countLabel || "";
+
+    const action = document.createElement("div");
+    action.className = "collection-card-action";
+    action.textContent = collection.linkLabel || "Open collection";
+
+    footer.append(count, action);
+    copy.append(meta, title, description, footer);
+    link.append(copy, preview);
+    article.appendChild(link);
+    collectionsNode.appendChild(article);
+  });
+}
+
+// Renders a single photo collection page and lightbox-enabled gallery.
+function renderPhotoCollection(content) {
+  setText("photo-collection-meta", content.meta);
+  setText("photo-collection-title", content.title);
+  setText("photo-collection-intro", content.intro);
+
+  const backLink = document.getElementById("photo-collection-back");
+  if (backLink instanceof HTMLAnchorElement) {
+    backLink.href = content.backHref || "/photography/";
+    backLink.textContent = content.backLabel || "All Collections";
+  }
+
+  const gridNode = document.getElementById("photo-collection-grid");
+  clearNode(gridNode);
+  if (!gridNode) {
+    return;
+  }
+
+  content.photos.forEach((photo, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "photo-gallery-card";
+    button.setAttribute("aria-label", `Open ${photo.title || `photo ${index + 1}`}`);
+    button.appendChild(makePhotoSurface(photo, "gallery"));
+
+    button.addEventListener("click", () => {
+      openPhotoLightbox(content.photos, index, content.title, button);
+    });
+
+    gridNode.appendChild(button);
+  });
+}
+
 // Routes rendering based on <body data-page="..."> and loaded window.SITE_CONTENT.
 function renderPageContent() {
   const content = window.SITE_CONTENT;
@@ -829,6 +998,14 @@ function renderPageContent() {
     renderProjects(content.projects);
   }
 
+  if (page === "photography" && content.photography) {
+    renderPhotography(content.photography);
+  }
+
+  if (page === "photo-collection" && content.photoCollection) {
+    renderPhotoCollection(content.photoCollection);
+  }
+
   if (page === "contact") {
     const contactContent = content.contact || content.contactPage;
     if (contactContent) {
@@ -846,3 +1023,22 @@ if (yearNode) {
 initTextCaseSetting();
 initResponsiveHeader();
 renderPageContent();
+
+document.addEventListener("keydown", (event) => {
+  const lightbox = document.getElementById("photo-lightbox");
+  if (!(lightbox instanceof HTMLElement) || lightbox.hidden) {
+    return;
+  }
+
+  if (event.key === "Escape") {
+    closePhotoLightbox();
+  }
+
+  if (event.key === "ArrowRight") {
+    stepPhotoLightbox(1);
+  }
+
+  if (event.key === "ArrowLeft") {
+    stepPhotoLightbox(-1);
+  }
+});
