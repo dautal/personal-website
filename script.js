@@ -945,7 +945,7 @@ function renderPhotoCollection(content) {
 
   const backLink = document.getElementById("photo-collection-back");
   if (backLink instanceof HTMLAnchorElement) {
-    backLink.href = content.backHref || "/photography/";
+    backLink.href = content.backHref || "/arts/";
     backLink.textContent = content.backLabel || "All Collections";
   }
 

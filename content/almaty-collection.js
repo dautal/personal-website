@@ -3,7 +3,7 @@ window.SITE_CONTENT = {
     meta: "Arts Collection",
     title: "Almaty Collection",
     intro: "City views, mountains, and everyday scenes from Almaty, Kazakhstan.",
-    backHref: "/photography/",
+    backHref: "/arts/",
     backLabel: "All Collections",
     photos: [
       {

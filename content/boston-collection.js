@@ -3,7 +3,7 @@ window.SITE_CONTENT = {
     meta: "Arts Collection",
     title: "Boston Collection",
     intro: "Street light, water, winter air, and everyday scenes from Boston.",
-    backHref: "/photography/",
+    backHref: "/arts/",
     backLabel: "All Collections",
     photos: [
       {

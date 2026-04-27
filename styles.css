@@ -808,6 +808,26 @@ body[data-page="home"] .about-me-layout #home-cta {
   height: 100%;
 }
 
+.arts-rights-note {
+  border-top: 1px solid rgba(20, 20, 20, 0.14);
+  padding-top: 1rem;
+}
+
+.arts-rights-note p {
+  max-width: 52rem;
+  margin: 0;
+  color: #4f4f49;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.arts-rights-note a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
 .photo-gallery-grid {
   column-count: 3;
   column-gap: 0.9rem;
